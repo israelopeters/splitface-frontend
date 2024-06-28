@@ -104,6 +104,15 @@
         android:text="Sign up"
         android:backgroundTint="#1a4eff"
         />
-
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="25dp"
+        android:backgroundTint="#1a4eff"
+        android:src="@drawable/baseline_arrow_back_24"
+        app:maxImageSize="25dp"
+        app:tint="@android:color/white"
+        app:fabCustomSize="40dp"/>
 
 </RelativeLayout>
