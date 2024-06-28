@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -18,13 +18,14 @@
     android:textSize="35sp"
     android:layout_margin="50dp"
     android:gravity="center"
-    android:textStyle="bold"/>
+    android:textStyle="bold"
+    app:layout_constraintTop_toTopOf="parent"/>
 
     <EditText
         android:id="@+id/username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/title"
+        app:layout_constraintTop_toBottomOf="@+id/title"
         android:hint="Email address"
         android:background="#30ffffff"
         android:textColor="@color/white"
@@ -38,7 +39,7 @@
         android:id="@+id/passcode"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/title"
+        app:layout_constraintTop_toBottomOf="@+id/title"
         android:hint="Password"
         android:background="#30ffffff"
         android:textColor="@color/white"
@@ -53,8 +54,9 @@
         android:id="@+id/signInButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/passcode"
-        android:layout_centerHorizontal="true"
+        app:layout_constraintTop_toBottomOf="@id/passcode"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="60dp"
         android:text="Sign in"
         android:backgroundTint="#1a4eff"
@@ -64,7 +66,9 @@
         android:id="@+id/signUpBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/signInButton"
+        app:layout_constraintTop_toBottomOf="@id/signInButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         android:text="Sign up"
         android:backgroundTint="@android:color/transparent"
         android:layout_marginTop="10dp"
@@ -74,13 +78,15 @@
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_alignParentBottom="true"
         android:layout_margin="25dp"
         android:backgroundTint="#1a4eff"
+        android:contentDescription="Back"
         android:src="@drawable/baseline_arrow_back_24"
         app:maxImageSize="25dp"
         app:tint="@android:color/white"
-        app:fabCustomSize="40dp"/>
+        app:fabCustomSize="40dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
 
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
