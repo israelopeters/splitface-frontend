@@ -6,7 +6,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/v859_katie_11"
+    android:background="@drawable/untitled_design__1_"
     tools:context=".ui.login.LoginActivity">
 
 <TextView
@@ -55,7 +55,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/passcode"
         android:layout_centerHorizontal="true"
-        android:layout_margin="10dp"
+        android:layout_marginTop="60dp"
         android:text="Sign in"
         android:backgroundTint="#30ffffff"
         />
@@ -67,6 +67,7 @@
         android:layout_below="@id/signInButton"
         android:text="Sign up"
         android:backgroundTint="@android:color/transparent"
+        android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true"
         android:padding="10dp"/>
 
