@@ -57,7 +57,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="60dp"
         android:text="Sign in"
-        android:backgroundTint="#30ffffff"
+        android:backgroundTint="#1a4eff"
         />
 
     <Button
@@ -70,5 +70,17 @@
         android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true"
         android:padding="10dp"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="25dp"
+        android:backgroundTint="#1a4eff"
+        android:src="@drawable/baseline_arrow_back_24"
+        app:maxImageSize="25dp"
+        app:tint="@android:color/white"
+        app:fabCustomSize="40dp"/>
+
 
 </RelativeLayout>
