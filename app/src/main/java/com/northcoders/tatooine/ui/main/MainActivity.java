@@ -1,6 +1,7 @@
 package com.northcoders.tatooine.ui.main;
 
 import androidx.appcompat.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
@@ -9,9 +10,10 @@ import android.widget.Toast;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.StaggeredGridLayoutManager;
+
 import com.northcoders.tatooine.R;
-import com.northcoders.tatooine.ui.login.LoginActivity;
+import com.northcoders.tatooine.ui.googlemaps.MapsActivity;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = (RecyclerView) findViewById(R.id.recyclerViewLayout);
         recyclerView.setHasFixedSize(true);
         layoutManager = new GridLayoutManager(this, 2, RecyclerView.VERTICAL, false);
-//        layoutManager = new StaggeredGridLayoutManager(2, RecyclerView.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
 
         ArrayList<String> testPriceList = new ArrayList<>();
@@ -45,4 +46,5 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
     }
+
 }

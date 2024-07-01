@@ -27,7 +27,7 @@ public class LoginActivity extends AppCompatActivity {
             return insets;
         });
 
-        TextView username = (TextView) findViewById(R.id.username);
+        TextView username = (TextView) findViewById(R.id.email);
         TextView password = (TextView) findViewById(R.id.passcode);
 
         Button signInButton = findViewById(R.id.signInButton);
