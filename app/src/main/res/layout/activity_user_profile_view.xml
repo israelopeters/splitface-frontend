@@ -5,20 +5,25 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.userprofileview.UserProfileViewActivity">
+    tools:context=".ui.userprofileview.UserProfileViewActivity"
+    android:background="#8fb5ff">
 
     <ImageView
         android:id="@+id/profilePicture"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:src="@color/black"
+        android:src="@drawable/baseline_person_outline_24"
+        android:background="@drawable/rounded_corners"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="20dp"
+        android:scaleType="centerCrop"
+        android:clipToOutline="true"/>
 
     <TextView
         android:id="@+id/artistName"
+        android:textColor="@color/white"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -33,6 +38,7 @@
 
     <TextView
         android:id="@+id/artistEmail"
+        android:textColor="@color/white"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -46,6 +52,7 @@
 
     <TextView
         android:id="@+id/artistPreferredStyles"
+        android:textColor="@color/white"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -59,13 +66,14 @@
         app:layout_constraintTop_toBottomOf="@id/locationButton"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-    <Button
+    <android.widget.Button
         android:id="@+id/locationButton"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:background="@drawable/button_shape"
         android:text="Loctaion"
-        android:textSize="13dp"
+        android:textColor="@color/white"
+        android:textSize="13sp"
         app:layout_constraintBottom_toBottomOf="@id/profilePicture"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginEnd="10dp"
@@ -88,8 +96,9 @@
         app:layout_constraintTop_toBottomOf="@id/recyclerViewOfPosts"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-<!--        app:menu="@menu/bottom_nav_menu"-->
+        app:layout_constraintEnd_toEndOf="parent"
+        app:menu="@menu/bottom_nav_menu">
+
 
     </com.google.android.material.bottomnavigation.BottomNavigationView>
 

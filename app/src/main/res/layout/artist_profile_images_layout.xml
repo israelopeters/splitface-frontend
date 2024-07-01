@@ -6,7 +6,7 @@
 
     <ImageView
         android:id="@+id/artImage"
-        android:src="@color/black"
+        android:src="@drawable/sample_artwork"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginStart="30dp"
