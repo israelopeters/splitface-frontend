@@ -43,6 +43,9 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".ui.userprofileview.UserProfileViewActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.updateprofile.UpdateProfileActivity"
             android:exported="false" />
         <activity
