@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">tatooine</string>
+    <string name="home">Home</string>
+    <string name="add_post">Add Post</string>
+    <string name="profile">Profile</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>

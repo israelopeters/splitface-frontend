@@ -5,5 +5,11 @@
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
-    <style name="Theme.Tatooine" parent="Base.Theme.Tatooine"/>
+    <style name="Theme.Tatooine" parent="Base.Theme.Tatooine">
+        <item name="android:statusBarColor">#F9DEDC
+        </item>
+        <item name="android:navigationBarColor">#F2ECF4</item>
+    </style>
+
+
 </resources>
