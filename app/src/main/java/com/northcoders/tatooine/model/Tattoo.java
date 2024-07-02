@@ -6,6 +6,7 @@ import androidx.databinding.Bindable;
 import com.google.gson.annotations.SerializedName;
 import com.northcoders.tatooine.BR;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 public class Tattoo extends BaseObservable {
@@ -29,7 +30,7 @@ public class Tattoo extends BaseObservable {
     private List<Style> styles;
 
     @SerializedName("timePosted")
-    private Time timePosted;
+    private Timestamp timePosted;
 
     public Tattoo() {
     }
