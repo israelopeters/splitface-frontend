@@ -10,5 +10,5 @@ import retrofit2.http.Path;
 
 public interface TattooAPIService {
     @GET("") // add path
-    Call<List<Tattoo>> getUser(@Path("username") String username); // change path
+    Call<List<Tattoo>> getAllTattoos(); // change/ add path?
 }
