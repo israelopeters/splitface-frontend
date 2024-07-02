@@ -1,5 +1,7 @@
 package com.northcoders.tatooine.model;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
 public class Style {
@@ -9,10 +11,18 @@ public class Style {
         REALISM,
         WILDCARD
     }
+
+    @SerializedName("id")
     private Long id;
+
+    @SerializedName("name")
     private StyleEnum styleName;
 
+    @SerializedName("tattoos")
     List<Tattoo> tattoos;
+
+    public Style() {
+    }
 
     public Style(Long id, StyleEnum styleName, List<Tattoo> tattoos) {
         this.id = id;

@@ -1,14 +1,30 @@
 package com.northcoders.tatooine.model;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
 public class Artist {
+    @SerializedName("id")
     private Long id;
+
+    @SerializedName("name")
     private String name;
+
+    @SerializedName("location")
     private String location;
+
+    @SerializedName("email")
     private String email;
+
+    @SerializedName("password")
     private String password;
+
+    @SerializedName("tattoos")
     private List<Tattoo> tattoos;
+
+    public Artist() {
+    }
 
     public Artist(Long id, String email, String name, String location, String password, List<Tattoo> tattoos) {
         this.id = id;

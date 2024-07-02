@@ -1,74 +1,79 @@
 package com.northcoders.tatooine.ui.userprofileview;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
+import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 import com.northcoders.tatooine.R;
+import com.northcoders.tatooine.model.Tattoo;
+
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder> {
+public class PostAdapter extends RecyclerView.Adapter<> {
 
-    private ArrayList<String> priceList;
+//    List<Tattoo> tattoos;
+//    Context context;
+//    RecyclerViewInterface recyclerViewInterface;
+//
+//    public PostAdapter(List<Tattoo> tattoos, Context context, RecyclerViewInterface recyclerViewInterface) {
+//        this.tattoos = tattoos;
+//        this.context = context;
+//        this.recyclerViewInterface = recyclerViewInterface;
+//    }
+//
+//    @NonNull
+//    @Override
+//    public AlbumViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+//        AlbumPresentationBinding albumPresentationBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.album_presentation, parent, false);
+//
+//        return new AlbumViewHolder(albumPresentationBinding, recyclerViewInterface);
+//    }
+//
+//    @Override
+//    public void onBindViewHolder(@NonNull AlbumViewHolder holder, int position) {
+//        Tattoo tattoo = tattoos.get(position);
+//
+//        holder.albumItemBinding.setAlbum(album);
+//    }
+//
+//    @Override
+//    public int getItemCount() {
+//        return albumList.size();
+//    }
+//
+//    public void setFilteredList(ArrayList<Album> filteredAlbums) {
+//        this.albumList = filteredAlbums;
+//        notifyDataSetChanged();
+//    }
+//
+//    public static class AlbumViewHolder extends RecyclerView.ViewHolder{
+//        private AlbumPresentationBinding albumItemBinding;
+//
+//        public AlbumViewHolder (AlbumPresentationBinding albumItemBinding, RecyclerViewInterface recyclerViewInterface) {
+//            super(albumItemBinding.getRoot());
+//            this.albumItemBinding = albumItemBinding;
+//            itemView.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    if (recyclerViewInterface != null){
+//                        int position = getAdapterPosition();
+//
+//                        if (position != RecyclerView.NO_POSITION) {
+//                            recyclerViewInterface.onItemClick(position);
+//                        }
+//                    }
+//                }
+//            });
+//        }
+//    }
 
-    public PostAdapter(ArrayList<String> priceList) {
-        this.priceList = priceList;
-    }
-
-    public class PostViewHolder extends RecyclerView.ViewHolder {
-
-        TextView priceHolder;
-        TextView timeTakenHolder;
-        View layout;
-
-        public PostViewHolder(@NonNull @NotNull View postView) {
-            super(postView);
-            layout = postView;
-            priceHolder = (TextView) postView.findViewById(R.id.artPrice);
-            timeTakenHolder = (TextView) postView.findViewById(R.id.timeSpentOnArt);
-        }
-    }
-
-    public void add(int position, String item) {
-        priceList.add(position, item);
-        notifyItemInserted(position);
-    }
-
-    public void remove(int position) {
-        priceList.remove(position);
-        notifyItemRemoved(position);
-    }
-
-
-    @NonNull
-    @NotNull
-    @Override
-    public PostAdapter.PostViewHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
-        LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View view = layoutInflater.inflate(R.layout.artist_profile_images_layout, parent, false);
-        PostViewHolder postViewHolder = new PostViewHolder(view);
-        return postViewHolder;
-    }
-
-    @Override
-    public void onBindViewHolder(@NonNull @NotNull PostViewHolder postViewHolder, @SuppressLint("RecyclerView") int position) {
-        final String price = priceList.get(position);
-        postViewHolder.priceHolder.setText(price);
-        postViewHolder.priceHolder.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                remove(position);
-            }
-        });
-    }
-
-    @Override
-    public int getItemCount() {
-        return priceList.size();
-    }
 }

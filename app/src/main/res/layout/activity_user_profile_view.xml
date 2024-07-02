@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.userprofileview.UserProfileViewActivity"
-    android:background="#8fb5ff">
+    android:background="#cfccc5">
 
     <ImageView
         android:id="@+id/profilePicture"
@@ -95,8 +95,8 @@
         app:layout_constraintTop_toBottomOf="@id/recyclerViewOfPosts"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-<!--        app:menu="@menu/bottom_nav_menu"-->
+        app:layout_constraintEnd_toEndOf="parent"
+        app:menu="@menu/bottom_nav_menu">
 
 
 

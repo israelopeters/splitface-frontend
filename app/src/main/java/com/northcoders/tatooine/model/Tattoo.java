@@ -1,17 +1,31 @@
 package com.northcoders.tatooine.model;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
 public class Tattoo {
+    @SerializedName("id")
     private Long id;
-    private String description;
+
+    @SerializedName("design")
+    private String design;
+
+    @SerializedName("price")
     private String price;
+
+    @SerializedName("artist")
     private Artist artist;
+
+    @SerializedName("styles")
     private List<Style> styles;
+
+    public Tattoo() {
+    }
 
     public Tattoo(Long id, String description, String price, Artist artist, List<Style> styles) {
         this.id = id;
-        this.description = description;
+        this.design = description;
         this.price = price;
         this.artist = artist;
         this.styles = styles;
@@ -49,11 +63,11 @@ public class Tattoo {
         this.price = price;
     }
 
-    public String getDescription() {
-        return description;
+    public String getDesign() {
+        return design;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setDesign(String design) {
+        this.design = design;
     }
 }
