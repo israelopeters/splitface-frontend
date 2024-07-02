@@ -28,6 +28,9 @@ public class Tattoo extends BaseObservable {
     @SerializedName("styles")
     private List<Style> styles;
 
+    @SerializedName("timePosted")
+    private Time timePosted;
+
     public Tattoo() {
     }
 
