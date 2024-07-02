@@ -30,7 +30,7 @@
         android:textSize="17sp"
         android:textAllCaps="true"
         android:textStyle="bold"
-        android:text="Here will be all the tags associated with the art."
+        android:text="@{String.valueOf(tattoo.styles)}"
         app:layout_constraintStart_toEndOf="@id/artImage"
         app:layout_constraintTop_toTopOf="@id/artImage"
         app:layout_constraintEnd_toEndOf="parent"/>
@@ -42,7 +42,7 @@
         android:textSize="14sp"
         android:textAllCaps="true"
         android:textStyle="italic"
-        android:text="Art price"
+        android:text="@{tattoo.price}"
         app:layout_constraintStart_toEndOf="@id/artImage"
         app:layout_constraintBottom_toBottomOf="@id/artImage"
         app:layout_constraintEnd_toEndOf="parent"/>
@@ -55,7 +55,7 @@
         android:textSize="14sp"
         android:textAllCaps="true"
         android:textStyle="italic"
-        android:text="Time taken"
+        android:text="@{tattoo.timeTaken}"
         app:layout_constraintBottom_toBottomOf="@id/artImage"
         app:layout_constraintEnd_toEndOf="parent"/>
 

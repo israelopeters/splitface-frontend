@@ -14,6 +14,10 @@ public class Tattoo {
     @SerializedName("price")
     private String price;
 
+    //Serialized name needs adding when added by backend
+    @SerializedName("timeTaken")
+    private String timeTaken;
+
     @SerializedName("artist")
     private Artist artist;
 
@@ -69,5 +73,13 @@ public class Tattoo {
 
     public void setDesign(String design) {
         this.design = design;
+    }
+
+    public String getTimeTaken() {
+        return timeTaken;
+    }
+
+    public void setTimeTaken(String timeTaken) {
+        this.timeTaken = timeTaken;
     }
 }
