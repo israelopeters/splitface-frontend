@@ -2,11 +2,13 @@ package com.northcoders.tatooine.ui.addpost;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.PickVisualMediaRequest;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -14,6 +16,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageView;
+import com.cloudinary.android.MediaManager;
+import com.cloudinary.android.callback.ErrorInfo;
+import com.cloudinary.android.callback.UploadCallback;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.navigation.NavigationBarView;
@@ -23,6 +28,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Map;
 
 public class AddPostActivity extends AppCompatActivity {
 
@@ -116,11 +122,13 @@ public class AddPostActivity extends AppCompatActivity {
         // Upload image functionality
         AppCompatImageView uploadImagePreview = findViewById(R.id.uploadImagePreview);
         MaterialButton uploadButton = findViewById(R.id.uploadImageButton);
+        Uri[] imageUri = new Uri[1];
 
         ActivityResultLauncher<PickVisualMediaRequest> pickMedia = registerForActivityResult(
                 new ActivityResultContracts.PickVisualMedia(), uri -> {
                     if (uri != null) {
                         Log.d("PhotoPicker", "Selected URI: " + uri);
+                        imageUri[0] = uri;
                         uploadImagePreview.setImageURI(uri);
                     } else {
                         Log.d("PhotoPicker", "No media selected");
@@ -137,7 +145,47 @@ public class AddPostActivity extends AppCompatActivity {
             }
         });
 
+        MaterialButton submitButton = findViewById(R.id.submitButton);
+        MediaManager.init(getApplicationContext());
 
+        submitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String requestId = MediaManager.get()
+                        .upload(imageUri[0])
+                        .unsigned("preset_1")
+                        .callback(new UploadCallback() {
+                            @Override
+                            public void onStart(String requestId) {
+                                Toast.makeText(getApplicationContext(), "Upload started...", Toast.LENGTH_SHORT).show();
+                            }
+
+                            @Override
+                            public void onProgress(String requestId, long bytes, long totalBytes) {
+                                double progress = (double) bytes/totalBytes;
+                                Toast.makeText(getApplicationContext(), "Uploading:" + progress, Toast.LENGTH_SHORT).show();
+                            }
+
+                            @Override
+                            public void onSuccess(String requestId, Map resultData) {
+                                Toast.makeText(getApplicationContext(), "Upload complete!", Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                                Toast.makeText(getApplicationContext(), "Post added!", Toast.LENGTH_SHORT).show();
+                            }
+
+                            @Override
+                            public void onError(String requestId, ErrorInfo error) {
+                                Toast.makeText(getApplicationContext(), "Upload failed!", Toast.LENGTH_SHORT).show();
+                            }
+
+                            @Override
+                            public void onReschedule(String requestId, ErrorInfo error) {
+
+                            }
+                        }).dispatch();
+
+            }
+        });
     }
 
 }

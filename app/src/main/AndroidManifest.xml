@@ -31,6 +31,10 @@
                 android:name="com.google.android.geo.API_KEY"
                 android:value="${MAPS_API_KEY}"/>
 
+        <meta-data
+                android:name="CLOUDINARY_URL"
+                android:value="cloudinary://@dl5xz5v2h"/>
+
         <activity
                 android:name=".ui.googlemaps.MapsActivity"
                 android:exported="true"
