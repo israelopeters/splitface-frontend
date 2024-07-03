@@ -31,7 +31,7 @@ public class AddPostActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_post);
 
-        textView = findViewById(R.id.selectStyleTextView);
+        textView = findViewById(R.id.selectStylesLayout);
 
         selectedStyles = new boolean[stylesArray.length];
 
@@ -53,7 +53,7 @@ public class AddPostActivity extends AppCompatActivity {
                         }
                     }
                 });
-                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                builder.setPositiveButton("Save", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         StringBuilder stringBuilder = new StringBuilder();

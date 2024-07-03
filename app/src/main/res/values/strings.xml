@@ -20,4 +20,5 @@
     <string name="enter_rate_per_hour">Enter rate (per hour)</string>
     <string name="rate">Rate: </string>
     <string name="select_styles">Select styles</string>
+    <string name="add_new_post">Add New Post</string>
 </resources>

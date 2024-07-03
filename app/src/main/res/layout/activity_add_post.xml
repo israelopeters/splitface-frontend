@@ -13,10 +13,10 @@
             android:layout_height="match_parent"
             tools:context=".ui.addpost.AddPostActivity">
 
-        <TextView android:id="@+id/mainHeader"
+        <TextView android:id="@+id/addPostHeader"
                   android:layout_width="match_parent"
                   android:layout_height="40dp"
-                  android:text="@string/tatooine"
+                  android:text="@string/add_new_post"
                   android:textColor="@color/white"
                   android:paddingHorizontal="20dp"
                   android:paddingTop="10dp"
@@ -27,75 +27,60 @@
                   app:layout_constraintEnd_toEndOf="parent"
                   app:layout_constraintTop_toTopOf="parent"/>
 
-        <TextView android:id="@+id/selectStyleTextView"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:paddingStart="24dp"
-                  android:paddingEnd="24dp"
-                  android:layout_marginStart="25dp"
-                  android:textColorHint="@color/black"
-                  android:hint="@string/select_styles"
-                  android:background="@drawable/search_view_background"
-                  app:layout_constraintTop_toBottomOf="@id/mainHeader"
-                  app:layout_constraintBottom_toTopOf="@id/rateLayout"
-                  app:layout_constraintStart_toStartOf="parent"/>
+        <com.google.android.material.textview.MaterialTextView android:id="@+id/selectStylesLayout"
+                                                               android:layout_height="40dp"
+                                                               android:layout_width="match_parent"
+                                                               android:background="@drawable/select_styles_background"
+                                                               android:paddingHorizontal="15dp"
+                                                               android:paddingVertical="10dp"
+                                                               android:layout_marginHorizontal="40dp"
+                                                               android:gravity="start"
+                                                               android:hint="@string/select_styles"
+                                                               android:textColor="@color/black"
+                                                               app:layout_constraintTop_toBottomOf="@id/addPostHeader"
+                                                               app:layout_constraintBottom_toTopOf="@id/rateLayout"
+                                                               app:layout_constraintStart_toStartOf="parent">
+        </com.google.android.material.textview.MaterialTextView>
 
 
-        <LinearLayout android:id="@+id/rateLayout"
-                      android:layout_height="wrap_content"
-                      android:layout_width="match_parent"
-                      android:paddingTop="5dp"
-                      android:paddingStart="20dp"
-                      android:paddingEnd="20dp"
-                      android:paddingHorizontal="40dp"
-                      android:orientation="horizontal"
-                      android:gravity="start"
-                      app:layout_constraintTop_toBottomOf="@id/selectStyleTextView"
-                      app:layout_constraintBottom_toTopOf="@id/timeTakenLayout">
 
-            <TextView android:id="@+id/rateTextView"
-                      android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:gravity="start"
-                      android:paddingStart="5dp"
-                      android:paddingEnd="5dp"
-                      android:text="@string/rate"/>
+        <com.google.android.material.textfield.TextInputLayout android:id="@+id/rateLayout"
+                                                               android:layout_height="wrap_content"
+                                                               android:layout_width="match_parent"
+                                                               android:paddingHorizontal="40dp"
+                                                               android:hint="@string/enter_rate_per_hour"
+                                                               app:boxCornerRadiusTopStart="10dp"
+                                                               app:boxCornerRadiusBottomStart="10dp"
+                                                               app:boxCornerRadiusBottomEnd="10dp"
+                                                               app:boxCornerRadiusTopEnd="10dp"
+                                                               style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox.Dense"
+                                                               app:endIconMode="clear_text"
+                                                               app:layout_constraintTop_toBottomOf="@+id/selectStylesLayout"
+                                                               app:layout_constraintBottom_toTopOf="@id/timeTakenLayout">
 
-            <EditText android:id="@+id/rateEditView"
-                      android:inputType="number"
-                      android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:textSize="15sp"
-                      android:hint="@string/enter_rate_per_hour"/>
-        </LinearLayout>
+            <com.google.android.material.textfield.TextInputEditText android:id="@+id/rateEditView"
+                                                                     android:layout_width="match_parent"
+                                                                     android:layout_height="wrap_content"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <LinearLayout android:id="@+id/timeTakenLayout"
-                      android:layout_height="wrap_content"
-                      android:layout_width="match_parent"
-                      android:paddingTop="5dp"
-                      android:paddingHorizontal="40dp"
-                      android:paddingStart="20dp"
-                      android:paddingEnd="20dp"
-                      android:orientation="horizontal"
-                      android:gravity="start"
-                      app:layout_constraintTop_toBottomOf="@id/rateLayout"
-                      app:layout_constraintBottom_toTopOf="@id/submitButton">
+        <com.google.android.material.textfield.TextInputLayout android:id="@+id/timeTakenLayout"
+                                                               android:layout_height="wrap_content"
+                                                               android:layout_width="match_parent"
+                                                               android:paddingHorizontal="40dp"
+                                                               android:hint="@string/enter_time_taken_in_hours"
+                                                               app:boxCornerRadiusTopStart="10dp"
+                                                               app:boxCornerRadiusBottomStart="10dp"
+                                                               app:boxCornerRadiusBottomEnd="10dp"
+                                                               app:boxCornerRadiusTopEnd="10dp"
+                                                               style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox.Dense"
+                                                               app:endIconMode="clear_text"
+                                                               app:layout_constraintTop_toBottomOf="@id/rateLayout"
+                                                               app:layout_constraintBottom_toTopOf="@id/submitButton">
 
-            <TextView android:id="@+id/timeTakenTextView"
-                      android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:gravity="start"
-                      android:paddingStart="5dp"
-                      android:paddingEnd="5dp"
-                      android:text="@string/time_taken"/>
-
-            <EditText android:id="@+id/timeTakenEditView"
-                      android:inputType="number"
-                      android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:textSize="15sp"
-                      android:hint="@string/enter_time_taken_in_hours"/>
-        </LinearLayout>
+            <com.google.android.material.textfield.TextInputEditText android:id="@+id/timeTakenEditView"
+                                                                     android:layout_width="match_parent"
+                                                                     android:layout_height="wrap_content"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
         <Button android:id="@+id/submitButton"
                 android:layout_width="wrap_content"
