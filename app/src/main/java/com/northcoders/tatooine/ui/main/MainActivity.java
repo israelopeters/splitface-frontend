@@ -38,18 +38,19 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         startActivity(new Intent(MainActivity.this, UserProfileViewActivity.class));
 
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerViewLayout);
-        recyclerView.setHasFixedSize(true);
-        layoutManager = new GridLayoutManager(this, 2, RecyclerView.VERTICAL, false);
-        recyclerView.setLayoutManager(layoutManager);
 
-        ArrayList<String> testPriceList = new ArrayList<>();
-        for (int i = 25; i < 100; i++) {
-            testPriceList.add("Price" + i);
-        }
-
-        adapter = new PostAdapter(testPriceList);
-        recyclerView.setAdapter(adapter);
+//        recyclerView = (RecyclerView) findViewById(R.id.recyclerViewLayout);
+//        recyclerView.setHasFixedSize(true);
+//        layoutManager = new GridLayoutManager(this, 2, RecyclerView.VERTICAL, false);
+//        recyclerView.setLayoutManager(layoutManager);
+//
+//        ArrayList<String> testPriceList = new ArrayList<>();
+//        for (int i = 25; i < 100; i++) {
+//            testPriceList.add("Price" + i);
+//        }
+//
+//        adapter = new PostAdapter(testPriceList);
+//        recyclerView.setAdapter(adapter);
     }
 
 }

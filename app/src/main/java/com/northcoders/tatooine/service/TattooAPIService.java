@@ -9,6 +9,6 @@ import retrofit2.http.GET;
 import retrofit2.http.Path;
 
 public interface TattooAPIService {
-    @GET("") // add path
+    @GET("tattoo") // add path
     Call<List<Tattoo>> getAllTattoos(); // change/ add path?
 }

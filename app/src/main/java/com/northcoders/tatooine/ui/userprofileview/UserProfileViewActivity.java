@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import com.northcoders.tatooine.R;
 import com.northcoders.tatooine.databinding.ActivityUserProfileViewBinding;
 import com.northcoders.tatooine.databinding.ArtistProfileImagesLayoutBinding;
+import com.northcoders.tatooine.model.Artist;
 import com.northcoders.tatooine.model.Tattoo;
 
 import java.util.ArrayList;
@@ -53,13 +54,14 @@ public class UserProfileViewActivity extends AppCompatActivity {
         });
     }
     private void displayInRecyclerView(){
-        recyclerView = binding.recyclerViewOfPosts;
-        adapter = new TattooAdapter(tattoos, this, new RecyclerViewInterface() {
-            @Override
-            public void onItemClick(int position) {
 
-            }
-        });
+        List<Tattoo> testTatts = List.of(
+                new Tattoo(1L, " ", "£1", null, null),
+                new Tattoo(2L, "This is a descrip", "£1", null, null)
+
+                );
+        recyclerView = binding.recyclerViewOfPosts;
+        adapter = new TattooAdapter(testTatts, this);
         recyclerView.setAdapter(adapter);
         LinearLayoutManager layout = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layout);
