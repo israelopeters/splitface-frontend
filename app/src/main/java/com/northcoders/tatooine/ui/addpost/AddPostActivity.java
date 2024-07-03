@@ -3,13 +3,19 @@ package com.northcoders.tatooine.ui.addpost;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.PickVisualMediaRequest;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatImageView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.navigation.NavigationBarView;
 import com.northcoders.tatooine.R;
 import com.northcoders.tatooine.ui.main.MainActivity;
@@ -31,6 +37,7 @@ public class AddPostActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_post);
 
+        // Select styles functionality
         textView = findViewById(R.id.selectStylesLayout);
 
         selectedStyles = new boolean[stylesArray.length];
@@ -87,6 +94,7 @@ public class AddPostActivity extends AppCompatActivity {
             }
         });
 
+        // Bottom navigation bar functionality
         bottomNavigationView = findViewById(R.id.bottomNavBarView);
         bottomNavigationView.setSelectedItemId(R.id.addPost);
 
@@ -104,6 +112,32 @@ public class AddPostActivity extends AppCompatActivity {
                 return false;
             }
         });
+
+        // Upload image functionality
+        AppCompatImageView uploadImagePreview = findViewById(R.id.uploadImagePreview);
+        MaterialButton uploadButton = findViewById(R.id.uploadImageButton);
+
+        ActivityResultLauncher<PickVisualMediaRequest> pickMedia = registerForActivityResult(
+                new ActivityResultContracts.PickVisualMedia(), uri -> {
+                    if (uri != null) {
+                        Log.d("PhotoPicker", "Selected URI: " + uri);
+                        uploadImagePreview.setImageURI(uri);
+                    } else {
+                        Log.d("PhotoPicker", "No media selected");
+                    }
+                }
+        );
+
+        uploadButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pickMedia.launch(new PickVisualMediaRequest.Builder()
+                        .setMediaType(ActivityResultContracts.PickVisualMedia.ImageOnly.INSTANCE)
+                        .build());
+            }
+        });
+
+
     }
 
 }

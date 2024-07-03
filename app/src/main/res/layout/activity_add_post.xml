@@ -27,17 +27,46 @@
                   app:layout_constraintEnd_toEndOf="parent"
                   app:layout_constraintTop_toTopOf="parent"/>
 
+        <androidx.appcompat.widget.AppCompatImageView android:id="@+id/uploadImagePreview"
+                                                      android:layout_width="match_parent"
+                                                      android:layout_height="200dp"
+                                                      android:layout_marginTop="40dp"
+                                                      android:layout_marginHorizontal="30dp"
+                                                      android:background="@drawable/upload_image_view_background"
+                                                      app:layout_constraintStart_toStartOf="parent"
+                                                      app:layout_constraintEnd_toEndOf="parent"
+                                                      app:layout_constraintTop_toBottomOf="@id/addPostHeader"
+                                                      app:layout_constraintBottom_toTopOf="@id/uploadImagePreview"/>
+
+        <com.google.android.material.button.MaterialButton android:id="@+id/uploadImageButton"
+                                                           android:layout_width="wrap_content"
+                                                           android:layout_height="40dp"
+                                                           app:cornerRadius="20dp"
+                                                           android:elevation="1dp"
+                                                           android:paddingLeft="24dp"
+                                                           android:paddingRight="24dp"
+                                                           android:textAlignment="center"
+                                                           android:shadowColor="#000000"
+                                                           android:backgroundTint="#F7F2FA"
+                                                           android:textColor="#6750A4"
+                                                           android:text="@string/upload_image"
+                                                           app:layout_constraintTop_toBottomOf="@+id/uploadImagePreview"
+                                                           app:layout_constraintBottom_toTopOf="@+id/selectStylesLayout"
+                                                           app:layout_constraintStart_toStartOf="parent"
+                                                           app:layout_constraintEnd_toEndOf="parent"/>
+
+
         <com.google.android.material.textview.MaterialTextView android:id="@+id/selectStylesLayout"
                                                                android:layout_height="40dp"
                                                                android:layout_width="match_parent"
                                                                android:background="@drawable/select_styles_background"
                                                                android:paddingHorizontal="15dp"
                                                                android:paddingVertical="10dp"
-                                                               android:layout_marginHorizontal="40dp"
+                                                               android:layout_marginHorizontal="30dp"
                                                                android:gravity="start"
                                                                android:hint="@string/select_styles"
                                                                android:textColor="@color/black"
-                                                               app:layout_constraintTop_toBottomOf="@id/addPostHeader"
+                                                               app:layout_constraintTop_toBottomOf="@id/uploadImageButton"
                                                                app:layout_constraintBottom_toTopOf="@id/rateLayout"
                                                                app:layout_constraintStart_toStartOf="parent">
         </com.google.android.material.textview.MaterialTextView>
@@ -47,7 +76,7 @@
         <com.google.android.material.textfield.TextInputLayout android:id="@+id/rateLayout"
                                                                android:layout_height="wrap_content"
                                                                android:layout_width="match_parent"
-                                                               android:paddingHorizontal="40dp"
+                                                               android:paddingHorizontal="30dp"
                                                                android:hint="@string/enter_rate_per_hour"
                                                                app:boxCornerRadiusTopStart="10dp"
                                                                app:boxCornerRadiusBottomStart="10dp"
@@ -66,7 +95,7 @@
         <com.google.android.material.textfield.TextInputLayout android:id="@+id/timeTakenLayout"
                                                                android:layout_height="wrap_content"
                                                                android:layout_width="match_parent"
-                                                               android:paddingHorizontal="40dp"
+                                                               android:paddingHorizontal="30dp"
                                                                android:hint="@string/enter_time_taken_in_hours"
                                                                app:boxCornerRadiusTopStart="10dp"
                                                                app:boxCornerRadiusBottomStart="10dp"
@@ -82,17 +111,17 @@
                                                                      android:layout_height="wrap_content"/>
         </com.google.android.material.textfield.TextInputLayout>
 
-        <Button android:id="@+id/submitButton"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:paddingLeft="24dp"
-                android:paddingRight="24dp"
-                android:textAlignment="center"
-                android:text="@string/submit"
-                app:layout_constraintTop_toBottomOf="@+id/timeTakenLayout"
-                app:layout_constraintBottom_toTopOf="@+id/bottomNavBarView"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+        <com.google.android.material.button.MaterialButton android:id="@+id/submitButton"
+                                                           android:layout_width="wrap_content"
+                                                           android:layout_height="40dp"
+                                                           android:paddingLeft="24dp"
+                                                           android:paddingRight="24dp"
+                                                           android:textAlignment="center"
+                                                           android:text="@string/submit"
+                                                           app:layout_constraintTop_toBottomOf="@+id/timeTakenLayout"
+                                                           app:layout_constraintBottom_toTopOf="@+id/bottomNavBarView"
+                                                           app:layout_constraintStart_toStartOf="parent"
+                                                           app:layout_constraintEnd_toEndOf="parent"/>
 
         <com.google.android.material.bottomnavigation.BottomNavigationView android:id="@+id/bottomNavBarView"
                                                                            android:layout_width="match_parent"
