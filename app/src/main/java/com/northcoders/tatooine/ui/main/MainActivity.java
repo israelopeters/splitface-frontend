@@ -32,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        startActivity(new Intent(MainActivity.this, UserProfileViewActivity.class));
 
         recyclerView = (RecyclerView) findViewById(R.id.recyclerViewLayout);
         recyclerView.setHasFixedSize(true);
@@ -54,9 +53,12 @@ public class MainActivity extends AppCompatActivity {
             if (item.getItemId() == R.id.addPost) {
                 startActivity(new Intent(getApplicationContext(), AddPostActivity.class));
                 return true;
-            } else if (item.getItemId() == R.id.profile) {
+            }
+            if (item.getItemId() == R.id.profile) {
+                startActivity(new Intent(getApplicationContext(), UserProfileViewActivity.class));
                 return true;
-            } else if (item.getItemId() == R.id.home) {
+            }
+            if (item.getItemId() == R.id.home) {
                 return true;
             }
             return false;
