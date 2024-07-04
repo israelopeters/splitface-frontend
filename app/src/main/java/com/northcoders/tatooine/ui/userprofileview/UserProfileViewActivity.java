@@ -19,7 +19,9 @@ import com.northcoders.tatooine.R;
 import com.northcoders.tatooine.databinding.ActivityUserProfileViewBinding;
 import com.northcoders.tatooine.databinding.ArtistProfileImagesLayoutBinding;
 import com.northcoders.tatooine.model.Artist;
+import com.northcoders.tatooine.model.Style;
 import com.northcoders.tatooine.model.Tattoo;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,9 +58,8 @@ public class UserProfileViewActivity extends AppCompatActivity {
     private void displayInRecyclerView(){
 
         List<Tattoo> testTatts = List.of(
-                new Tattoo(1L, " ", "£1", null, null),
-                new Tattoo(2L, "This is a descrip", "£1", null, null)
-
+                new Tattoo(1L, " ", "£1", List.of(new Style(1L, "REALISM")), "2"),
+                new Tattoo(2L, " ", "£10", List.of(new Style(2L, "FINE LINE")), "2")
                 );
         recyclerView = binding.recyclerViewOfPosts;
         adapter = new TattooAdapter(testTatts, this);

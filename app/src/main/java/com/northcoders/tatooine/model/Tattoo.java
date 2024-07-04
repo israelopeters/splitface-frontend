@@ -20,11 +20,9 @@ public class Tattoo extends BaseObservable {
     private String price;
 
     //Serialized name needs adding when added by backend
-    @SerializedName("timeTaken")
-    private String timeTaken;
+    @SerializedName("hoursWorked")
+    private String hoursWorked;
 
-    @SerializedName("artist")
-    private Artist artist;
 
     @SerializedName("styles")
     private List<Style> styles;
@@ -35,12 +33,12 @@ public class Tattoo extends BaseObservable {
     public Tattoo() {
     }
 
-    public Tattoo(Long id, String description, String price, Artist artist, List<Style> styles) {
+    public Tattoo(Long id, String description, String price, List<Style> styles, String hoursWorked) {
         this.id = id;
         this.design = description;
         this.price = price;
-        this.artist = artist;
         this.styles = styles;
+        this.hoursWorked = hoursWorked;
     }
 
     @Bindable
@@ -63,15 +61,6 @@ public class Tattoo extends BaseObservable {
         notifyPropertyChanged(BR.styles);
     }
 
-    @Bindable
-    public Artist getArtist() {
-        return artist;
-    }
-
-    public void setArtist(Artist artist) {
-        this.artist = artist;
-        notifyPropertyChanged(BR.artist);
-    }
 
     @Bindable
     public String getPrice() {
@@ -94,12 +83,12 @@ public class Tattoo extends BaseObservable {
     }
 
     @Bindable
-    public String getTimeTaken() {
-        return timeTaken;
+    public String getHoursWorked() {
+        return hoursWorked;
     }
 
-    public void setTimeTaken(String timeTaken) {
-        this.timeTaken = timeTaken;
-        notifyPropertyChanged(BR.timeTaken);
+    public void setHoursWorked(String hoursWorked) {
+        this.hoursWorked = hoursWorked;
+        notifyPropertyChanged(BR.hoursWorked);
     }
 }

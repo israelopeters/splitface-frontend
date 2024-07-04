@@ -56,7 +56,7 @@
         android:textSize="14sp"
         android:textAllCaps="true"
         android:textStyle="italic"
-        android:text="@{tattoo.timeTaken}"
+        android:text="@{tattoo.hoursWorked}"
         app:layout_constraintBottom_toBottomOf="@id/artImage"
         app:layout_constraintEnd_toEndOf="parent"/>
 
