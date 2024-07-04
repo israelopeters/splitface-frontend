@@ -6,7 +6,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/untitled_design__1_"
+    android:background="@drawable/page_view_background"
     tools:context=".ui.login.LoginActivity">
 
     <TextView
@@ -88,7 +88,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="120dp"
+        android:layout_marginBottom="150dp"
         android:layout_centerHorizontal="true"
         android:text="Submit Changes"
         android:backgroundTint="#1a4eff"
