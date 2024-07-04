@@ -9,7 +9,7 @@
           android:title="@string/add_post"
           android:icon="@drawable/add_post"/>
 
-    <item android:id="@+id/Profile"
+    <item android:id="@+id/profile"
           android:title="@string/profile"
           android:icon="@drawable/profile"/>
 
