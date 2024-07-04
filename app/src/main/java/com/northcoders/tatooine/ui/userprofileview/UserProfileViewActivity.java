@@ -50,7 +50,7 @@ public class UserProfileViewActivity extends AppCompatActivity {
                 if (tattoosFromLiveData != null) {
                     tattoos.addAll(tattoosFromLiveData);
                 }
-                List<Style> styles = List.of(new Style(1L, "REALISM"));
+                List<Style> styles = List.of(new Style(1L, "REALISM"), new Style(2L, "FINE LINE"), new Style(3L, "WATERCOLOUR"));
                 tattoos.add(new Tattoo(1L, "£1000", "", "3 hours", styles, "Now"));
                 tattoos.add(new Tattoo(1L, "£100", "", "3 hours", styles, "Now"));
                 adapter.notifyDataSetChanged();
