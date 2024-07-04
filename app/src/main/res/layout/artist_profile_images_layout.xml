@@ -10,39 +10,41 @@
 
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
+    android:layout_marginStart="20dp"
+    android:layout_marginEnd="20dp"
+    android:layout_marginTop="20dp"
     android:layout_height="wrap_content"
     android:background="@drawable/recyler_view_background_shape">
 
 
     <ImageView
         android:id="@+id/artImage"
-        android:src="@color/white"
+        android:src="#271f47"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:layout_marginStart="30dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
-        android:paddingBottom="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
     <TextView
         android:id="@+id/artTags"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:textSize="17sp"
         android:textAllCaps="true"
         android:textStyle="bold"
-        android:text="@{String.valueOf(tattoo.styles)}"
+        android:text="@{tattoo.styles}"
         app:layout_constraintStart_toEndOf="@id/artImage"
         app:layout_constraintTop_toTopOf="@id/artImage"
         app:layout_constraintEnd_toEndOf="parent"/>
     <TextView
         android:id="@+id/artPrice"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:textSize="14sp"
@@ -50,11 +52,10 @@
         android:textStyle="italic"
         android:text="@{tattoo.price}"
         app:layout_constraintStart_toEndOf="@id/artImage"
-        app:layout_constraintBottom_toBottomOf="@id/artImage"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintBottom_toBottomOf="@id/artImage"/>
     <TextView
         android:id="@+id/timeSpentOnArt"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"

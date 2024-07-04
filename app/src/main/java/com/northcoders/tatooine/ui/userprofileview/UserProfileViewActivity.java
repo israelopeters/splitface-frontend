@@ -11,13 +11,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.northcoders.tatooine.R;
 import com.northcoders.tatooine.databinding.ActivityUserProfileViewBinding;
+import com.northcoders.tatooine.model.Style;
 import com.northcoders.tatooine.model.Tattoo;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class UserProfileViewActivity extends AppCompatActivity {
-
     private RecyclerView recyclerView;
     private ArrayList<Tattoo> tattoos;
     private TattooAdapter adapter;
@@ -35,6 +35,10 @@ public class UserProfileViewActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
 
+        tattoos = new ArrayList<>();
+        adapter = new TattooAdapter(tattoos, this);
+        recyclerView.setAdapter(adapter);
+
         getAllTattoos();
     }
 
@@ -42,15 +46,15 @@ public class UserProfileViewActivity extends AppCompatActivity {
         viewModel.getAllTattoos().observe(this, new Observer<List<Tattoo>>() {
             @Override
             public void onChanged(List<Tattoo> tattoosFromLiveData) {
-                tattoos = new ArrayList<>(tattoosFromLiveData);
-                displayInRecyclerView();
+                tattoos.clear();
+                if (tattoosFromLiveData != null) {
+                    tattoos.addAll(tattoosFromLiveData);
+                }
+                List<Style> styles = List.of(new Style(1L, "REALISM"));
+                tattoos.add(new Tattoo(1L, "£1000", "", "3 hours", styles, "Now"));
+                tattoos.add(new Tattoo(1L, "£100", "", "3 hours", styles, "Now"));
+                adapter.notifyDataSetChanged();
             }
         });
-    }
-
-    private void displayInRecyclerView() {
-        adapter = new TattooAdapter(tattoos, this);
-        recyclerView.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
     }
 }
