@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data><variable
+        name="tattoo"
+        type="com.northcoders.tatooine.model.Tattoo" /></data>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
     <ImageView
         android:id="@+id/artImage"
-        android:src="@color/black"
+        android:src="@color/white"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginStart="30dp"
@@ -14,6 +21,7 @@
         android:layout_marginBottom="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
+
     <TextView
         android:id="@+id/artTags"
         android:layout_width="0dp"
@@ -23,7 +31,7 @@
         android:textSize="17sp"
         android:textAllCaps="true"
         android:textStyle="bold"
-        android:text="Here will be all the tags associated with the art."
+        android:text="@{String.valueOf(tattoo.styles)}"
         app:layout_constraintStart_toEndOf="@id/artImage"
         app:layout_constraintTop_toTopOf="@id/artImage"
         app:layout_constraintEnd_toEndOf="parent"/>
@@ -35,7 +43,7 @@
         android:textSize="14sp"
         android:textAllCaps="true"
         android:textStyle="italic"
-        android:text="Art price"
+        android:text="@{tattoo.price}"
         app:layout_constraintStart_toEndOf="@id/artImage"
         app:layout_constraintBottom_toBottomOf="@id/artImage"
         app:layout_constraintEnd_toEndOf="parent"/>
@@ -48,9 +56,10 @@
         android:textSize="14sp"
         android:textAllCaps="true"
         android:textStyle="italic"
-        android:text="Time taken"
+        android:text="@{tattoo.timeTaken}"
         app:layout_constraintBottom_toBottomOf="@id/artImage"
         app:layout_constraintEnd_toEndOf="parent"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

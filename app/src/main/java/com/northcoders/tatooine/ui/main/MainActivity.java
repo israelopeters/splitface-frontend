@@ -10,10 +10,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.northcoders.tatooine.R;
+
+import com.northcoders.tatooine.ui.login.LoginActivity;
+import com.northcoders.tatooine.ui.userprofileview.UserProfileViewActivity;
+
+import com.northcoders.tatooine.ui.googlemaps.MapsActivity;
 import com.northcoders.tatooine.ui.addpost.AddPostActivity;
 
 
 import java.util.ArrayList;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        startActivity(new Intent(MainActivity.this, UserProfileViewActivity.class));
 
         recyclerView = (RecyclerView) findViewById(R.id.recyclerViewLayout);
         recyclerView.setHasFixedSize(true);
