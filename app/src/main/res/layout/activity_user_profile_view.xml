@@ -9,14 +9,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.userprofileview.UserProfileViewActivity"
-    android:background="#271f47">
+    android:background="@color/white">
+
+    <TextView android:id="@+id/mainHeader"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="Profile"
+        android:textColor="@color/white"
+        android:paddingHorizontal="20dp"
+        android:paddingTop="10dp"
+        android:background="@color/material_dynamic_primary20"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <ImageView
         android:id="@+id/profilePicture"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:src="@drawable/baseline_person_outline_24"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mainHeader"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
@@ -25,7 +39,7 @@
 
     <TextView
         android:id="@+id/artistName"
-        android:textColor="@color/white"
+        android:textColor="@color/material_dynamic_primary20"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -40,7 +54,7 @@
 
     <TextView
         android:id="@+id/artistEmail"
-        android:textColor="@color/white"
+        android:textColor="@color/material_dynamic_primary20"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -54,7 +68,7 @@
 
     <TextView
         android:id="@+id/artistPreferredStyles"
-        android:textColor="@color/white"
+        android:textColor="@color/material_dynamic_primary20"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -73,7 +87,7 @@
         android:layout_height="40dp"
         android:background="@drawable/button_shape"
         android:text="Loctaion"
-        android:textColor="#271f47"
+        android:textColor="@color/white"
         android:textSize="13sp"
         app:layout_constraintBottom_toBottomOf="@id/profilePicture"
         app:layout_constraintEnd_toEndOf="parent"
