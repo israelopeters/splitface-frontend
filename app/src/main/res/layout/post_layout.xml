@@ -7,7 +7,7 @@
         android:layout_gravity="center_horizontal">
 
     <data>
-<!--        <variable name="album" type=""/>-->
+        <variable name="tattoo" type="com.northcoders.tatooine.model.Tattoo"/>
     </data>
 
     <androidx.cardview.widget.CardView android:layout_width="200dp"
@@ -55,7 +55,7 @@
                           app:layout_constraintTop_toTopOf="parent"
                           app:layout_constraintBottom_toBottomOf="parent"
                           android:textStyle="bold"
-                          android:text="Price: $25/h"/>
+                          android:text="@{tattoo.price}"/>
 
                 <TextView android:id="@+id/timeTakenTextView"
                           android:layout_width="wrap_content"
@@ -65,7 +65,7 @@
                           app:layout_constraintTop_toTopOf="parent"
                           app:layout_constraintBottom_toBottomOf="parent"
                           android:textStyle="bold"
-                          android:text="Time taken: 5 h"/>
+                          android:text="@{tattoo.hoursWorked}"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>

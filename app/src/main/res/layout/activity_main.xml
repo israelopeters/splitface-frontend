@@ -34,7 +34,7 @@
                       android:paddingVertical="10dp"
                       android:background="@color/material_dynamic_primary20"
                       app:layout_constraintTop_toBottomOf="@id/mainHeader"
-                      app:layout_constraintBottom_toTopOf="@id/recyclerViewLayout"
+                      app:layout_constraintBottom_toTopOf="@id/recyclerViewMain"
                       app:layout_constraintStart_toStartOf="parent"
                       app:layout_constraintEnd_toEndOf="parent">
 
@@ -48,7 +48,7 @@
 
         </LinearLayout>
 
-        <androidx.recyclerview.widget.RecyclerView android:id="@+id/recyclerViewLayout"
+        <androidx.recyclerview.widget.RecyclerView android:id="@+id/recyclerViewMain"
                                                    android:layout_width="match_parent"
                                                    android:layout_height="0dp"
                                                    android:paddingTop="5dp"
@@ -63,7 +63,7 @@
                                                                                android:layout_width="match_parent"
                                                                                android:layout_height="wrap_content"
                                                                                android:background="@android:color/transparent"
-                                                                               app:layout_constraintTop_toBottomOf="@id/recyclerViewLayout"
+                                                                               app:layout_constraintTop_toBottomOf="@id/recyclerViewMain"
                                                                                app:layout_constraintBottom_toBottomOf="parent"
                                                                                app:layout_constraintStart_toStartOf="parent"
                                                                                app:layout_constraintEnd_toEndOf="parent"

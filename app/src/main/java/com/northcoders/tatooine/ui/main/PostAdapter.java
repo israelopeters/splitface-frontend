@@ -1,74 +1,66 @@
 package com.northcoders.tatooine.ui.main;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
+import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 import com.northcoders.tatooine.R;
+import com.northcoders.tatooine.databinding.ActivityMainBinding;
+import com.northcoders.tatooine.databinding.ArtistProfileImagesLayoutBinding;
+import com.northcoders.tatooine.databinding.PostLayoutBinding;
+import com.northcoders.tatooine.model.Tattoo;
+import com.northcoders.tatooine.ui.userprofileview.TattooAdapter;
+
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder> {
+    private List<Tattoo> tattoos;
+    private Context context;
 
-    private ArrayList<String> priceList;
-
-    public PostAdapter(ArrayList<String> priceList) {
-        this.priceList = priceList;
+    public PostAdapter(List<Tattoo> tattoos, Context context) {
+        this.tattoos = tattoos;
+        this.context = context;
     }
-
-    public class PostViewHolder extends RecyclerView.ViewHolder {
-
-        TextView priceHolder;
-//        TextView timeTakenHolder;
-        View layout;
-
-        public PostViewHolder(@NonNull @NotNull View postView) {
-            super(postView);
-            layout = postView;
-            priceHolder = (TextView) postView.findViewById(R.id.priceTextView);
-//            timeTakenHolder = (TextView) postView.findViewById(R.id.timeTakenTextView);
-        }
-    }
-
-    public void add(int position, String item) {
-        priceList.add(position, item);
-        notifyItemInserted(position);
-    }
-
-    public void remove(int position) {
-        priceList.remove(position);
-        notifyItemRemoved(position);
-    }
-
 
     @NonNull
-    @NotNull
     @Override
-    public PostAdapter.PostViewHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
+    public PostAdapter.PostViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View view = layoutInflater.inflate(R.layout.post_layout, parent, false);
-        PostViewHolder postViewHolder = new PostViewHolder(view);
-        return postViewHolder;
+        PostLayoutBinding binding = DataBindingUtil.inflate(layoutInflater, R.layout.post_layout, parent, false);
+        return new PostAdapter.PostViewHolder(binding);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull @NotNull PostViewHolder postViewHolder, @SuppressLint("RecyclerView") int position) {
-        final String price = priceList.get(position);
-        postViewHolder.priceHolder.setText(price);
-        postViewHolder.priceHolder.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                remove(position);
-            }
-        });
+    public void onBindViewHolder(@NonNull PostAdapter.PostViewHolder holder, int position) {
+        Tattoo tattoo = tattoos.get(position);
+        holder.bind(tattoo);
     }
 
     @Override
     public int getItemCount() {
-        return priceList.size();
+        return tattoos.size();
     }
+
+    public static class PostViewHolder extends RecyclerView.ViewHolder {
+        private PostLayoutBinding binding;
+
+        public PostViewHolder(PostLayoutBinding binding) {
+            super(binding.getRoot());
+            this.binding = binding;
+        }
+
+        public void bind(Tattoo tattoo) {
+            binding.setTattoo(tattoo);
+            binding.executePendingBindings();
+        }
+        }
 }
+

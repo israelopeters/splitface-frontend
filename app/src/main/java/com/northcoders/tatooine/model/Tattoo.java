@@ -20,27 +20,26 @@ public class Tattoo extends BaseObservable {
     private String price;
 
     //Serialized name needs adding when added by backend
-    @SerializedName("timeTaken")
-    private String timeTaken;
+    @SerializedName("hoursWorked")
+    private String hoursWorked;
 
-    @SerializedName("artist")
-    private Artist artist;
 
     @SerializedName("styles")
     private List<Style> styles;
 
     @SerializedName("timePosted")
-    private Timestamp timePosted;
+    private String timePosted;
 
     public Tattoo() {
     }
 
-    public Tattoo(Long id, String description, String price, Artist artist, List<Style> styles) {
+    public Tattoo(Long id, String price, String design, String hoursWorked, List<Style> styles, String timePosted) {
         this.id = id;
-        this.design = description;
         this.price = price;
-        this.artist = artist;
+        this.design = design;
+        this.hoursWorked = hoursWorked;
         this.styles = styles;
+        this.timePosted = timePosted;
     }
 
     @Bindable
@@ -54,8 +53,15 @@ public class Tattoo extends BaseObservable {
     }
 
     @Bindable
-    public List<Style> getStyles() {
-        return styles;
+    public String getStyles() {
+    StringBuilder styleNames = new StringBuilder();
+        for (Style style : styles) {
+        if (styleNames.length() > 0) {
+            styleNames.append(", ");
+        }
+        styleNames.append(style.getStyleName());
+    }
+        return styleNames.toString();
     }
 
     public void setStyles(List<Style> styles) {
@@ -63,15 +69,6 @@ public class Tattoo extends BaseObservable {
         notifyPropertyChanged(BR.styles);
     }
 
-    @Bindable
-    public Artist getArtist() {
-        return artist;
-    }
-
-    public void setArtist(Artist artist) {
-        this.artist = artist;
-        notifyPropertyChanged(BR.artist);
-    }
 
     @Bindable
     public String getPrice() {
@@ -94,12 +91,22 @@ public class Tattoo extends BaseObservable {
     }
 
     @Bindable
-    public String getTimeTaken() {
-        return timeTaken;
+    public String getHoursWorked() {
+        return hoursWorked;
     }
 
-    public void setTimeTaken(String timeTaken) {
-        this.timeTaken = timeTaken;
-        notifyPropertyChanged(BR.timeTaken);
+    public void setHoursWorked(String hoursWorked) {
+        this.hoursWorked = hoursWorked;
+        notifyPropertyChanged(BR.hoursWorked);
+    }
+
+    @Bindable
+    public String getTimePosted() {
+        return timePosted;
+    }
+
+    public void setTimePosted(String timePosted) {
+        this.timePosted = timePosted;
+        notifyPropertyChanged(BR.timePosted);
     }
 }
