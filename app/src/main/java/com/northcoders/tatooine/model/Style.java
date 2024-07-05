@@ -6,28 +6,19 @@ import java.util.List;
 
 public class Style {
 
-    private enum StyleEnum{
-        WATERCOLOUR,
-        REALISM,
-        WILDCARD
-    }
-
     @SerializedName("id")
     private Long id;
 
     @SerializedName("name")
-    private StyleEnum styleName;
+    private String styleName;
 
-    @SerializedName("tattoos")
-    List<Tattoo> tattoos;
 
     public Style() {
     }
 
-    public Style(Long id, StyleEnum styleName, List<Tattoo> tattoos) {
+    public Style(Long id, String styleName) {
         this.id = id;
         this.styleName = styleName;
-        this.tattoos = tattoos;
     }
 
     public Long getId() {
@@ -38,19 +29,12 @@ public class Style {
         this.id = id;
     }
 
-    public List<Tattoo> getTattoos() {
-        return tattoos;
-    }
 
-    public void setTattoos(List<Tattoo> tattoos) {
-        this.tattoos = tattoos;
-    }
-
-    public StyleEnum getStyleName() {
+    public String getStyleName() {
         return styleName;
     }
 
-    public void setStyleName(StyleEnum styleName) {
+    public void setStyleName(String styleName) {
         this.styleName = styleName;
     }
 }
