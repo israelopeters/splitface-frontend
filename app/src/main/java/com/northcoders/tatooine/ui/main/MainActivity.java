@@ -1,6 +1,6 @@
 package com.northcoders.tatooine.ui.main;
-
 import android.content.Context;
+import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,7 +12,6 @@ import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -20,16 +19,11 @@ import com.google.android.material.navigation.NavigationBarView;
 import com.northcoders.tatooine.R;
 
 import com.northcoders.tatooine.databinding.ActivityMainBinding;
-import com.northcoders.tatooine.databinding.ActivityUserProfileViewBinding;
 import com.northcoders.tatooine.model.Style;
 import com.northcoders.tatooine.model.Tattoo;
-import com.northcoders.tatooine.ui.login.LoginActivity;
-import com.northcoders.tatooine.ui.userprofileview.TattooAdapter;
 import com.northcoders.tatooine.ui.userprofileview.UserProfileViewActivity;
-
-//import com.northcoders.tatooine.ui.googlemaps.MapsActivity;
 import com.northcoders.tatooine.ui.addpost.AddPostActivity;
-import com.northcoders.tatooine.ui.userprofileview.UserProfileViewModel;
+import org.jetbrains.annotations.NotNull;
 
 
 import org.jetbrains.annotations.NotNull;
