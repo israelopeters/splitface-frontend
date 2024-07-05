@@ -19,4 +19,17 @@ public class RetrofitInstance {
 
         return retrofit.create(TattooAPIService.class);
     }
+
+    public static ArtistAPIService getArtistService(){
+
+        if (retrofit == null){
+            retrofit = new Retrofit
+                    .Builder()
+                    .baseUrl(BASE_URL)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+        }
+
+        return retrofit.create(ArtistAPIService.class);
+    }
 }
