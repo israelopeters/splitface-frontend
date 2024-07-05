@@ -1,9 +1,12 @@
 package com.northcoders.tatooine.ui.main;
 
 import android.content.Context;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
@@ -13,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 import com.northcoders.tatooine.R;
 
 import com.northcoders.tatooine.databinding.ActivityMainBinding;
@@ -23,10 +27,12 @@ import com.northcoders.tatooine.ui.login.LoginActivity;
 import com.northcoders.tatooine.ui.userprofileview.TattooAdapter;
 import com.northcoders.tatooine.ui.userprofileview.UserProfileViewActivity;
 
-import com.northcoders.tatooine.ui.googlemaps.MapsActivity;
+//import com.northcoders.tatooine.ui.googlemaps.MapsActivity;
 import com.northcoders.tatooine.ui.addpost.AddPostActivity;
 import com.northcoders.tatooine.ui.userprofileview.UserProfileViewModel;
 
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
     private PostAdapter adapter;
     private MainViewModel viewModel;
     private ActivityMainBinding binding;
+    private BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,20 +62,29 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
         getAllTattoos();
+
+        // Bottom navigation bar functionality
+        bottomNavigationView = findViewById(R.id.bottomNavBarView);
+        bottomNavigationView.setSelectedItemId(R.id.home);
+
+        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull @NotNull MenuItem item) {
+                if (item.getItemId() == R.id.profile) {
+                    startActivity(new Intent(getApplicationContext(), UserProfileViewActivity.class));
+                    return true;
+                }
+                if (item.getItemId() == R.id.home) {
+                    return true;
+                }
+                if (item.getItemId() == R.id.addPost) {
+                    startActivity(new Intent(getApplicationContext(), AddPostActivity.class));
+                    return true;
+                }
+                return false;
+            }
+        });
     }
-
-
-        bottomNavigationView.setOnItemSelectedListener(item -> {
-            if (item.getItemId() == R.id.addPost) {
-                startActivity(new Intent(getApplicationContext(), AddPostActivity.class));
-                return true;
-            }
-            if (item.getItemId() == R.id.profile) {
-                startActivity(new Intent(getApplicationContext(), UserProfileViewActivity.class));
-                return true;
-            }
-            if (item.getItemId() == R.id.home) {
-                return true;
 
     private void getAllTattoos() {
         viewModel.getAllTattoos().observe(this, new Observer<List<Tattoo>>() {
@@ -78,7 +94,10 @@ public class MainActivity extends AppCompatActivity {
                 if (tattoosFromLiveData != null) {
                     tattoos.addAll(tattoosFromLiveData);
                 }
-                List<Style> styles = List.of(new Style(1L, "REALISM"), new Style(2L, "FINE LINE"), new Style(3L, "WATERCOLOUR"));
+                List<Style> styles = new ArrayList<>();
+                styles.add(new Style(1L, "REALISM"));
+                styles.add(new Style(2L, "FINE LINE"));
+                styles.add(new Style(3L, "WATERCOLOUR"));
                 tattoos.add(new Tattoo(1L, "£1000", "", "3 hours", styles, "Now"));
                 tattoos.add(new Tattoo(1L, "£100", "", "3 hours", styles, "Now"));
                 adapter.notifyDataSetChanged();

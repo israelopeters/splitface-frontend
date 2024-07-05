@@ -23,4 +23,7 @@ public class UserProfileViewModel extends AndroidViewModel {
         return repository.getMutableLiveData();
     }
 
+    public LiveData<List<Tattoo>> getAllTattoosFromSpecificArtist(Long id){
+        return repository.getMutableLiveDataForArtistSpecificTattoos(id);
+    }
 }

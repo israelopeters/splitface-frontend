@@ -33,7 +33,6 @@
         android:textSize="20sp"
         android:textAllCaps="true"
         android:textStyle="bold"
-        android:text="Artist name"
         app:layout_constraintStart_toEndOf="@id/profilePicture"
         app:layout_constraintTop_toTopOf="@id/profilePicture"
         app:layout_constraintEnd_toEndOf="parent"/>
