@@ -16,16 +16,11 @@ import com.northcoders.tatooine.databinding.ActivityUserProfileViewBinding;
 import com.northcoders.tatooine.model.Artist;
 import com.northcoders.tatooine.model.Style;
 import com.northcoders.tatooine.model.Tattoo;
-import com.northcoders.tatooine.service.ArtistAPIService;
 import com.northcoders.tatooine.ui.addpost.AddPostActivity;
 import com.northcoders.tatooine.ui.main.MainActivity;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class UserProfileViewActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
@@ -33,6 +28,7 @@ public class UserProfileViewActivity extends AppCompatActivity {
     private TattooAdapter adapter;
     private UserProfileViewModel viewModel;
     private ActivityUserProfileViewBinding binding;
+    private Artist artist;
     BottomNavigationView bottomNavigationView;
 
     @Override
@@ -42,7 +38,7 @@ public class UserProfileViewActivity extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_user_profile_view);
         viewModel = new ViewModelProvider(this).get(UserProfileViewModel.class);
 
-        Long artistId = (long) getIntent().getIntExtra("artist_id", -1);
+        Long artistId = (long) getIntent().getIntExtra("artist", -1);
 
         recyclerView = binding.recyclerViewOfPosts;
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -52,7 +48,7 @@ public class UserProfileViewActivity extends AppCompatActivity {
         adapter = new TattooAdapter(tattoos, this);
         recyclerView.setAdapter(adapter);
 
-        getAllTattoos(artistId);
+        getArtistDetails(artistId);
 
         // Bottom Navigation Bar functionality
         bottomNavigationView = findViewById(R.id.bottomNavBarView);
@@ -74,6 +70,19 @@ public class UserProfileViewActivity extends AppCompatActivity {
         });
     }
 
+    private void getArtistDetails(Long artistId) {
+        viewModel.getArtistDetails(artistId).observe(this, new Observer<Artist>() {
+            @Override
+            public void onChanged(Artist artistFromLiveData) {
+                if (artistFromLiveData != null) {
+                    artist = artistFromLiveData;
+                    binding.setArtist(artist);
+                    getAllTattoos(artist.getId());
+                }
+            }
+        });
+    }
+
     private void getAllTattoos(Long id) {
         viewModel.getAllTattoosFromSpecificArtist(id).observe(this, new Observer<List<Tattoo>>() {
             @Override
@@ -82,26 +91,8 @@ public class UserProfileViewActivity extends AppCompatActivity {
                 if (tattoosFromLiveData != null) {
                     tattoos.addAll(tattoosFromLiveData);
                 }
-                List<Style> styles = List.of(new Style(1L, "REALISM"), new Style(2L, "FINE LINE"), new Style(3L, "WATERCOLOUR"));
-                tattoos.add(new Tattoo(1L, "£1000", "", "3 hours", styles, "Now"));
-                tattoos.add(new Tattoo(1L, "£100", "", "3 hours", styles, "Now"));
                 adapter.notifyDataSetChanged();
             }
         });
     }
-
-    private void displayInRecyclerView(){
-
-        List<Tattoo> testTatts = new ArrayList<>();
-        testTatts.add(new Tattoo(1L, "£1", "", "3hr", null, "1:00"));
-        testTatts.add(new Tattoo(1L, "£1", "", "3hr", null, "1:00"));
-        recyclerView = binding.recyclerViewOfPosts;
-        adapter = new TattooAdapter(testTatts, this);
-        recyclerView.setAdapter(adapter);
-        LinearLayoutManager layout = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layout);
-        recyclerView.setHasFixedSize(true);
-        adapter.notifyDataSetChanged();
-    }
-
 }
