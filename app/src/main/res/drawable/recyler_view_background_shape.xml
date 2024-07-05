@@ -9,5 +9,5 @@
         android:bottomRightRadius="10dp"/>
     <stroke
         android:width="5dp"
-        android:color="#c0b8e0"/>
+        android:color="@color/material_dynamic_primary20"/>
 </shape>

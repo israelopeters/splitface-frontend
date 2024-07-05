@@ -40,6 +40,7 @@
         android:textStyle="bold|italic"
         android:text="@{tattoo.styles}"
         app:layout_constraintStart_toEndOf="@id/artImage"
+        android:textColor="@color/material_dynamic_primary20"
         app:layout_constraintTop_toTopOf="@id/artImage"
         app:layout_constraintEnd_toEndOf="parent"/>
     <TextView
@@ -50,6 +51,7 @@
         android:textSize="14sp"
         android:textAllCaps="true"
         android:textStyle="italic"
+        android:textColor="@color/material_dynamic_primary20"
         android:text="@{tattoo.price}"
         app:layout_constraintStart_toEndOf="@id/artImage"
         app:layout_constraintBottom_toBottomOf="@id/artImage"/>
@@ -63,6 +65,7 @@
         android:textAllCaps="true"
         android:textStyle="italic"
         android:text="@{tattoo.hoursWorked}"
+        android:textColor="@color/material_dynamic_primary20"
         app:layout_constraintBottom_toBottomOf="@id/artImage"
         app:layout_constraintEnd_toEndOf="parent"/>
 
