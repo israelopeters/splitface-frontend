@@ -57,6 +57,19 @@ public class MainActivity extends AppCompatActivity {
         getAllTattoos();
     }
 
+
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+            if (item.getItemId() == R.id.addPost) {
+                startActivity(new Intent(getApplicationContext(), AddPostActivity.class));
+                return true;
+            }
+            if (item.getItemId() == R.id.profile) {
+                startActivity(new Intent(getApplicationContext(), UserProfileViewActivity.class));
+                return true;
+            }
+            if (item.getItemId() == R.id.home) {
+                return true;
+
     private void getAllTattoos() {
         viewModel.getAllTattoos().observe(this, new Observer<List<Tattoo>>() {
             @Override
@@ -69,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
                 tattoos.add(new Tattoo(1L, "£1000", "", "3 hours", styles, "Now"));
                 tattoos.add(new Tattoo(1L, "£100", "", "3 hours", styles, "Now"));
                 adapter.notifyDataSetChanged();
+
             }
         });
     }

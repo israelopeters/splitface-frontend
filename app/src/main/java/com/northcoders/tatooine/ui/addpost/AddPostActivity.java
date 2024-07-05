@@ -24,6 +24,7 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.navigation.NavigationBarView;
 import com.northcoders.tatooine.R;
 import com.northcoders.tatooine.ui.main.MainActivity;
+import com.northcoders.tatooine.ui.userprofileview.UserProfileViewActivity;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -42,6 +43,28 @@ public class AddPostActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_post);
+
+        // Bottom navigation bar functionality
+        bottomNavigationView = findViewById(R.id.bottomNavBarView);
+        bottomNavigationView.setSelectedItemId(R.id.addPost);
+
+        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull @NotNull MenuItem item) {
+                if (item.getItemId() == R.id.profile) {
+                    startActivity(new Intent(getApplicationContext(), UserProfileViewActivity.class));
+                    return true;
+                }
+                if (item.getItemId() == R.id.home) {
+                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                    return true;
+                }
+                if (item.getItemId() == R.id.addPost) {
+                    return true;
+                }
+                return false;
+            }
+        });
 
         // Select styles functionality
         textView = findViewById(R.id.selectStylesLayout);
@@ -97,25 +120,6 @@ public class AddPostActivity extends AppCompatActivity {
                     }
                 });
                 builder.show();
-            }
-        });
-
-        // Bottom navigation bar functionality
-        bottomNavigationView = findViewById(R.id.bottomNavBarView);
-        bottomNavigationView.setSelectedItemId(R.id.addPost);
-
-        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull @NotNull MenuItem item) {
-                if (item.getItemId() == R.id.addPost) {
-                    return true;
-                } else if (item.getItemId() == R.id.profile) {
-                    return true;
-                } else if (item.getItemId() == R.id.home) {
-                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                    return true;
-                }
-                return false;
             }
         });
 
