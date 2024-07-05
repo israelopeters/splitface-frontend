@@ -1,19 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+
+ <layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data><variable
+        name="tattoo"
+        type="com.northcoders.tatooine.model.Tattoo" /></data>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_marginStart="20dp"
+    android:layout_marginEnd="20dp"
+    android:layout_marginTop="20dp"
+    android:layout_height="wrap_content"
+    android:background="@drawable/recyler_view_background_shape">
+
 
     <ImageView
         android:id="@+id/artImage"
-        android:src="@drawable/sample_artwork"
+        android:src="#271f47"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:layout_marginStart="30dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
     <TextView
         android:id="@+id/artTags"
         android:layout_width="0dp"
@@ -22,35 +37,35 @@
         android:layout_marginEnd="20dp"
         android:textSize="17sp"
         android:textAllCaps="true"
-        android:textStyle="bold"
-        android:text="Here will be all the tags associated with the art."
+        android:textStyle="bold|italic"
+        android:text="@{tattoo.styles}"
         app:layout_constraintStart_toEndOf="@id/artImage"
         app:layout_constraintTop_toTopOf="@id/artImage"
         app:layout_constraintEnd_toEndOf="parent"/>
     <TextView
         android:id="@+id/artPrice"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:textSize="14sp"
         android:textAllCaps="true"
         android:textStyle="italic"
-        android:text="Art price"
+        android:text="@{tattoo.price}"
         app:layout_constraintStart_toEndOf="@id/artImage"
-        app:layout_constraintBottom_toBottomOf="@id/artImage"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintBottom_toBottomOf="@id/artImage"/>
     <TextView
         android:id="@+id/timeSpentOnArt"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:textSize="14sp"
         android:textAllCaps="true"
         android:textStyle="italic"
-        android:text="Time taken"
+        android:text="@{tattoo.hoursWorked}"
         app:layout_constraintBottom_toBottomOf="@id/artImage"
         app:layout_constraintEnd_toEndOf="parent"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

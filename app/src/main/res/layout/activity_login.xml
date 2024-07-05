@@ -6,7 +6,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/untitled_design__1_"
+    android:background="@drawable/page_view_background"
     tools:context=".ui.login.LoginActivity">
 
 <TextView
