@@ -1,107 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
 
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:id="@+id/main"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.userprofileview.UserProfileViewActivity"
-    android:background="#271f47">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <ImageView
-        android:id="@+id/profilePicture"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/baseline_person_outline_24"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:scaleType="centerCrop"
-        android:clipToOutline="true"/>
+    <!--    <data>-->
+    <!--        <variable name="clickHandler" type="com.northcoders.recordshopapp.ui.mainactivity.MainActivityClickHandler"/>-->
+    <!--    </data>-->
 
-    <TextView
-        android:id="@+id/artistName"
-        android:textColor="@color/white"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:textSize="20sp"
-        android:textAllCaps="true"
-        android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@id/profilePicture"
-        app:layout_constraintTop_toTopOf="@id/profilePicture"
-        app:layout_constraintEnd_toEndOf="parent"/>
-
-    <TextView
-        android:id="@+id/artistEmail"
-        android:textColor="@color/white"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginTop="5dp"
-        android:textSize="15sp"
-        android:textStyle="bold"
-        android:text="Artist work email"
-        app:layout_constraintStart_toEndOf="@id/profilePicture"
-        app:layout_constraintTop_toTopOf="@id/locationButton" />
-
-    <TextView
-        android:id="@+id/artistPreferredStyles"
-        android:textColor="@color/white"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginTop="10dp"
-        android:textSize="15sp"
-        android:textAllCaps="true"
-        android:text="Preferred artist styles"
-        app:layout_constraintStart_toStartOf="@id/profilePicture"
-        app:layout_constraintTop_toBottomOf="@id/locationButton"
-        app:layout_constraintEnd_toEndOf="parent"/>
-
-    <android.widget.Button
-        android:id="@+id/locationButton"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:background="@drawable/button_shape"
-        android:text="Loctaion"
-        android:textColor="#271f47"
-        android:textSize="13sp"
-        app:layout_constraintBottom_toBottomOf="@id/profilePicture"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginEnd="10dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewOfPosts"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/artistPreferredStyles" />
+        android:layout_height="match_parent"
+        tools:context=".ui.mainactivity.MainActivity">
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView android:id="@+id/bottomNavBarView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/recyclerViewOfPosts"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:menu="@menu/bottom_nav_menu">
+        <TextView android:id="@+id/mainHeader"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="@string/tatooine"
+            android:textColor="@color/white"
+            android:paddingHorizontal="20dp"
+            android:paddingTop="10dp"
+            android:background="@color/material_dynamic_primary20"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
+        <LinearLayout android:id="@+id/searchBarLinearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:paddingHorizontal="15dp"
+            android:paddingVertical="10dp"
+            android:background="@color/material_dynamic_primary20"
+            app:layout_constraintTop_toBottomOf="@id/mainHeader"
+            app:layout_constraintBottom_toTopOf="@id/recyclerViewMain"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
 
+            <SearchView android:id="@+id/searchViewAlbumYear"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:paddingHorizontal="10dp"
+                android:background="@drawable/search_view_background"
+                android:iconifiedByDefault="false"
+                android:queryHint="Find artists..."/>
 
-    </com.google.android.material.bottomnavigation.BottomNavigationView>
+        </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.recyclerview.widget.RecyclerView android:id="@+id/recyclerViewMain"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:paddingTop="5dp"
+            android:foregroundGravity="center_horizontal"
+            android:background="@color/white"
+            app:layout_constraintTop_toBottomOf="@id/searchBarLinearLayout"
+            app:layout_constraintBottom_toTopOf="@id/bottomNavBarView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView android:id="@+id/bottomNavBarView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            app:layout_constraintTop_toBottomOf="@id/recyclerViewMain"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:menu="@menu/bottom_nav_menu">
+        </com.google.android.material.bottomnavigation.BottomNavigationView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>
