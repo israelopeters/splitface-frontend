@@ -9,7 +9,7 @@ public class Style {
     @SerializedName("id")
     private Long id;
 
-    @SerializedName("name")
+    @SerializedName("styleName")
     private String styleName;
 
 

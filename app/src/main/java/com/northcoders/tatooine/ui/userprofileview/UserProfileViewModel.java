@@ -8,6 +8,7 @@ import androidx.lifecycle.LiveData;
 
 import com.northcoders.tatooine.model.Tattoo;
 import com.northcoders.tatooine.model.TattooRepository;
+import retrofit2.http.Body;
 
 import java.util.List;
 

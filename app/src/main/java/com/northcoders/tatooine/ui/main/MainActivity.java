@@ -10,6 +10,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -40,17 +41,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         viewModel = new ViewModelProvider(this).get(MainViewModel.class);
-
-        recyclerView = binding.recyclerViewMain;
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
-        recyclerView.setHasFixedSize(true);
-
-        tattoos = new ArrayList<>();
-        adapter = new PostAdapter(tattoos, this);
-        recyclerView.setAdapter(adapter);
 
         getAllTattoos();
 
@@ -65,14 +59,11 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(new Intent(getApplicationContext(), UserProfileViewActivity.class));
                     return true;
                 }
-                if (item.getItemId() == R.id.home) {
-                    return true;
-                }
                 if (item.getItemId() == R.id.addPost) {
                     startActivity(new Intent(getApplicationContext(), AddPostActivity.class));
                     return true;
                 }
-                return false;
+                return item.getItemId() == R.id.home;
             }
         });
     }
@@ -81,19 +72,21 @@ public class MainActivity extends AppCompatActivity {
         viewModel.getAllTattoos().observe(this, new Observer<List<Tattoo>>() {
             @Override
             public void onChanged(List<Tattoo> tattoosFromLiveData) {
-                tattoos.clear();
-                if (tattoosFromLiveData != null) {
-                    tattoos.addAll(tattoosFromLiveData);
-                }
-                List<Style> styles = new ArrayList<>();
-                styles.add(new Style(1L, "REALISM"));
-                styles.add(new Style(2L, "FINE LINE"));
-                styles.add(new Style(3L, "WATERCOLOUR"));
-                tattoos.add(new Tattoo(1L, "£1000", "", "3 hours", styles, "Now"));
-                tattoos.add(new Tattoo(1L, "£100", "", "3 hours", styles, "Now"));
-                adapter.notifyDataSetChanged();
-
+                tattoos = (ArrayList<Tattoo>) tattoosFromLiveData;
+                displayInRecyclerView();
             }
         });
+    }
+
+    public void displayInRecyclerView() {
+        recyclerView = binding.recyclerViewMain;
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+
+        adapter = new PostAdapter(tattoos, this);
+        recyclerView.setAdapter(adapter);
+
+        recyclerView.setHasFixedSize(true);
+
+        adapter.notifyDataSetChanged();
     }
 }

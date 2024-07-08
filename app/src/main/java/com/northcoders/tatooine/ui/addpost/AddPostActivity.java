@@ -16,6 +16,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageView;
+import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.ViewModelProvider;
 import com.cloudinary.android.MediaManager;
 import com.cloudinary.android.callback.ErrorInfo;
 import com.cloudinary.android.callback.UploadCallback;
@@ -23,7 +25,10 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.navigation.NavigationBarView;
 import com.northcoders.tatooine.R;
+import com.northcoders.tatooine.databinding.ActivityAddPostBinding;
+import com.northcoders.tatooine.model.Tattoo;
 import com.northcoders.tatooine.ui.main.MainActivity;
+import com.northcoders.tatooine.ui.main.MainViewModel;
 import com.northcoders.tatooine.ui.userprofileview.UserProfileViewActivity;
 import org.jetbrains.annotations.NotNull;
 
@@ -33,16 +38,35 @@ import java.util.Map;
 
 public class AddPostActivity extends AppCompatActivity {
 
-    TextView textView;
     boolean[] selectedStyles;
     ArrayList<Integer> stylesList = new ArrayList<>();
     String[] stylesArray = {"REALISM", "WATERCOLOUR", "WILDCARD"};
     BottomNavigationView bottomNavigationView;
+    AppCompatImageView uploadImagePreview;
+    MaterialButton uploadButton;
+    MainViewModel viewModel;
+    ActivityAddPostBinding binding;
+    final String[] requestId = new String[1];
+    Uri imageUri;
+    AddPostActivityClickHandlers handler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_post);
+
+        Tattoo post = new Tattoo();
+
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_add_post);
+        viewModel = new ViewModelProvider(this).get(MainViewModel.class);
+
+        // Set unbound views
+        TextView selectStylesView = findViewById(R.id.selectStylesLayout);
+
+        handler = new AddPostActivityClickHandlers(post, viewModel, this, imageUri, selectStylesView);
+
+        binding.setClickHandler(handler);
+        binding.setPost(post);
 
         // Bottom navigation bar functionality
         bottomNavigationView = findViewById(R.id.bottomNavBarView);
@@ -59,67 +83,7 @@ public class AddPostActivity extends AppCompatActivity {
                     startActivity(new Intent(getApplicationContext(), MainActivity.class));
                     return true;
                 }
-                if (item.getItemId() == R.id.addPost) {
-                    return true;
-                }
-                return false;
-            }
-        });
-
-        // Select styles functionality
-        textView = findViewById(R.id.selectStylesLayout);
-
-        selectedStyles = new boolean[stylesArray.length];
-
-        textView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(AddPostActivity.this);
-                builder.setTitle("Select styles");
-                builder.setCancelable(false);
-
-                builder.setMultiChoiceItems(stylesArray, selectedStyles, new DialogInterface.OnMultiChoiceClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which, boolean isChecked) {
-                        if (isChecked) {
-                            stylesList.add(which);
-                            Collections.sort(stylesList);
-                        } else {
-                            stylesList.remove(Integer.valueOf(which));
-                        }
-                    }
-                });
-                builder.setPositiveButton("Save", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        StringBuilder stringBuilder = new StringBuilder();
-
-                        for (int i = 0; i < stylesList.size(); i++) {
-                            stringBuilder.append(stylesArray[stylesList.get(i)]);
-                            if (i != stylesList.size()-1) {
-                                stringBuilder.append(", ");
-                            }
-                        }
-                        textView.setText(stringBuilder.toString());
-                    }
-                });
-                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
-                builder.setNeutralButton("Clear all", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        for (int i = 0; i < selectedStyles.length; i++) {
-                            selectedStyles[i] = false;
-                            stylesList.clear();
-                            textView.setText("");
-                        }
-                    }
-                });
-                builder.show();
+                return item.getItemId() == R.id.addPost;
             }
         });
 
@@ -150,11 +114,10 @@ public class AddPostActivity extends AppCompatActivity {
         });
 
         MaterialButton submitButton = findViewById(R.id.submitButton);
-        MediaManager.init(getApplicationContext());
-
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MediaManager.init(getApplicationContext());
                 String requestId = MediaManager.get()
                         .upload(imageUri[0])
                         .unsigned("preset_1")
@@ -166,15 +129,18 @@ public class AddPostActivity extends AppCompatActivity {
 
                             @Override
                             public void onProgress(String requestId, long bytes, long totalBytes) {
-                                double progress = (double) bytes/totalBytes;
+                                double progress = (double) bytes / totalBytes;
                                 Toast.makeText(getApplicationContext(), "Uploading:" + progress, Toast.LENGTH_SHORT).show();
                             }
 
                             @Override
                             public void onSuccess(String requestId, Map resultData) {
                                 Toast.makeText(getApplicationContext(), "Upload complete!", Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+
+                                viewModel.addPost(new Tattoo(2212L, "Price here", "Time taken here", "Image URI here", null, null));
                                 Toast.makeText(getApplicationContext(), "Post added!", Toast.LENGTH_SHORT).show();
+
+                                startActivity(new Intent(getApplicationContext(), MainActivity.class));
                             }
 
                             @Override
@@ -188,7 +154,7 @@ public class AddPostActivity extends AppCompatActivity {
                             }
                         }).dispatch();
 
-            }
+            };
         });
     }
 

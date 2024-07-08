@@ -31,17 +31,18 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
     }
 
     @NonNull
+    @NotNull
     @Override
-    public PostAdapter.PostViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public PostViewHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         PostLayoutBinding binding = DataBindingUtil.inflate(layoutInflater, R.layout.post_layout, parent, false);
-        return new PostAdapter.PostViewHolder(binding);
+        return new PostViewHolder(binding);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull PostAdapter.PostViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull @NotNull PostViewHolder holder, int position) {
         Tattoo tattoo = tattoos.get(position);
-        holder.bind(tattoo);
+        holder.binding.setTattoo(tattoo);
     }
 
     @Override
@@ -56,11 +57,9 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
             super(binding.getRoot());
             this.binding = binding;
         }
-
-        public void bind(Tattoo tattoo) {
-            binding.setTattoo(tattoo);
-            binding.executePendingBindings();
-        }
-        }
+    }
+    public void setFilteredList(ArrayList<Tattoo> filteredList) {
+        tattoos = filteredList;
+    }
 }
 

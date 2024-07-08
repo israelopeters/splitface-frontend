@@ -6,8 +6,10 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
+import androidx.lifecycle.MutableLiveData;
 import com.northcoders.tatooine.model.Tattoo;
 import com.northcoders.tatooine.model.TattooRepository;
+import retrofit2.http.Body;
 
 import java.util.List;
 
@@ -19,7 +21,13 @@ public class MainViewModel extends AndroidViewModel {
         this.repository = new TattooRepository(application);
     }
 
-    public LiveData<List<Tattoo>> getAllTattoos(){
+    public MutableLiveData<List<Tattoo>> getAllTattoos(){
         return repository.getMutableLiveData();
     }
+
+    public void addPost(@Body Tattoo post) {};
+
+    public void updatePost(long id, @Body Tattoo post) {};
+
+    public void deletePost(long id) {};
 }

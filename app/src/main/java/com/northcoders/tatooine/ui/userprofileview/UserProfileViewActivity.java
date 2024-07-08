@@ -74,7 +74,10 @@ public class UserProfileViewActivity extends AppCompatActivity {
                 if (tattoosFromLiveData != null) {
                     tattoos.addAll(tattoosFromLiveData);
                 }
-                List<Style> styles = List.of(new Style(1L, "REALISM"), new Style(2L, "FINE LINE"), new Style(3L, "WATERCOLOUR"));
+                List<Style> styles = new ArrayList<>();
+                styles.add(new Style(1L, "REALISM"));
+                styles.add(new Style(2L, "FINE LINE"));
+                styles.add(new Style(3L, "WATERCOLOUR"));
                 tattoos.add(new Tattoo(1L, "£1000", "", "3 hours", styles, "Now"));
                 tattoos.add(new Tattoo(1L, "£100", "", "3 hours", styles, "Now"));
                 adapter.notifyDataSetChanged();
@@ -85,8 +88,8 @@ public class UserProfileViewActivity extends AppCompatActivity {
     private void displayInRecyclerView(){
 
         List<Tattoo> testTatts = new ArrayList<>();
-        testTatts.add(new Tattoo(1L, " ", "£1", null, null));
-        testTatts.add(new Tattoo(2L, "This is a descrip", "£1", null, null));
+//        testTatts.add(new Tattoo(1L, " ", "£1", null, null));
+//        testTatts.add(new Tattoo(2L, "This is a descrip", "£1", null, null));
         recyclerView = binding.recyclerViewOfPosts;
         adapter = new TattooAdapter(testTatts, this);
         recyclerView.setAdapter(adapter);
