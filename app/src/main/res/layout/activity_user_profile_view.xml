@@ -35,7 +35,7 @@
             android:id="@+id/profilePicture"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:src="@drawable/baseline_person_outline_24"
+            android:src="@drawable/profile"
             app:layout_constraintTop_toBottomOf="@id/mainHeader"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="20dp"
@@ -61,7 +61,7 @@
         <TextView
             android:id="@+id/artistEmail"
             android:textColor="@color/material_dynamic_primary20"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
@@ -70,22 +70,8 @@
             android:textStyle="bold"
             android:text="@{artist.email}"
             app:layout_constraintStart_toEndOf="@id/profilePicture"
-            app:layout_constraintTop_toTopOf="@id/locationButton" />
-
-        <TextView
-            android:id="@+id/artistPreferredStyles"
-            android:textColor="@color/material_dynamic_primary20"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginTop="10dp"
-            android:textSize="15sp"
-            android:textAllCaps="true"
-            android:text="Preferred artist styles"
-            app:layout_constraintStart_toStartOf="@id/profilePicture"
-            app:layout_constraintTop_toBottomOf="@id/locationButton"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintTop_toTopOf="@id/locationButton"
+            app:layout_constraintEnd_toStartOf="@id/locationButton"/>
 
         <android.widget.Button
             android:id="@+id/locationButton"
@@ -101,6 +87,36 @@
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp" />
 
+        <android.widget.Button
+            android:id="@+id/deleteProfileButton"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:background="@drawable/button_shape"
+            android:text=" Delete Profile "
+            android:textColor="@color/white"
+            android:textSize="13sp"
+            app:layout_constraintTop_toBottomOf="@id/profilePicture"
+            app:layout_constraintStart_toStartOf="@id/profilePicture"
+            app:layout_constraintEnd_toStartOf="@id/editProfileButton"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="5dp" />
+
+        <android.widget.Button
+            android:id="@+id/editProfileButton"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:background="@drawable/button_shape"
+            android:text="Edit Profile"
+            android:textColor="@color/white"
+            android:textSize="13sp"
+            app:layout_constraintTop_toBottomOf="@id/profilePicture"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/deleteProfileButton"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="5dp" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewOfPosts"
             android:layout_width="match_parent"
@@ -109,7 +125,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/artistPreferredStyles" />
+            app:layout_constraintTop_toBottomOf="@id/deleteProfileButton" />
 
         <com.google.android.material.bottomnavigation.BottomNavigationView android:id="@+id/bottomNavBarView"
             android:layout_width="match_parent"
@@ -119,7 +135,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:menu="@menu/bottom_nav_menu">
-
 
 
         </com.google.android.material.bottomnavigation.BottomNavigationView>

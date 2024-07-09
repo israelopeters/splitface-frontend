@@ -38,7 +38,7 @@ public class UserProfileViewActivity extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_user_profile_view);
         viewModel = new ViewModelProvider(this).get(UserProfileViewModel.class);
 
-        Long artistId = (long) getIntent().getIntExtra("artist", -1);
+        Long artistId = getIntent().getLongExtra("artist", -1L);
 
         recyclerView = binding.recyclerViewOfPosts;
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -77,6 +77,7 @@ public class UserProfileViewActivity extends AppCompatActivity {
                 if (artistFromLiveData != null) {
                     artist = artistFromLiveData;
                     binding.setArtist(artist);
+                    adapter.notifyDataSetChanged();
                     getAllTattoos(artist.getId());
                 }
             }

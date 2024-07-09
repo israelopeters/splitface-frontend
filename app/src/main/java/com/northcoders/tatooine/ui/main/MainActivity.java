@@ -21,6 +21,7 @@ import com.northcoders.tatooine.R;
 import com.northcoders.tatooine.databinding.ActivityMainBinding;
 import com.northcoders.tatooine.model.Style;
 import com.northcoders.tatooine.model.Tattoo;
+import com.northcoders.tatooine.ui.login.LoginActivity;
 import com.northcoders.tatooine.ui.userprofileview.UserProfileViewActivity;
 import com.northcoders.tatooine.ui.addpost.AddPostActivity;
 import org.jetbrains.annotations.NotNull;
@@ -65,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull @NotNull MenuItem item) {
                 if (item.getItemId() == R.id.profile) {
-                    startActivity(new Intent(getApplicationContext(), UserProfileViewActivity.class));
+                    startActivity(new Intent(getApplicationContext(), LoginActivity.class));
                     return true;
                 }
                 if (item.getItemId() == R.id.home) {
