@@ -10,7 +10,6 @@ import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -18,7 +17,6 @@ import com.google.android.material.navigation.NavigationBarView;
 import com.northcoders.tatooine.R;
 
 import com.northcoders.tatooine.databinding.ActivityMainBinding;
-import com.northcoders.tatooine.model.Style;
 import com.northcoders.tatooine.model.Tattoo;
 import com.northcoders.tatooine.ui.userprofileview.UserProfileViewActivity;
 

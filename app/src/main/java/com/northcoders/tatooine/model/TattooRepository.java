@@ -2,12 +2,14 @@ package com.northcoders.tatooine.model;
 
 import android.app.Application;
 
+import android.util.JsonReader;
 import android.util.Log;
 import androidx.lifecycle.MutableLiveData;
 
 import com.northcoders.tatooine.service.RetrofitInstance;
 import com.northcoders.tatooine.service.TattooAPIService;
 
+import java.io.IOException;
 import java.util.List;
 
 import retrofit2.Call;
@@ -15,7 +17,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class TattooRepository {
-    MutableLiveData<List<Tattoo>> liveTattooData = new MutableLiveData<>();
+    private MutableLiveData<List<Tattoo>> liveTattooData = new MutableLiveData<>();
     Application application;
 
     public TattooRepository(Application application) {
