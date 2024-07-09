@@ -22,6 +22,7 @@ import com.northcoders.tatooine.model.Tattoo;
 import com.northcoders.tatooine.ui.addpost.AddPostActivity;
 import com.northcoders.tatooine.ui.login.LoginActivity;
 import com.northcoders.tatooine.ui.main.MainActivity;
+import com.northcoders.tatooine.ui.updateprofile.UpdateProfileActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -82,6 +83,15 @@ public class UserProfileViewActivity extends AppCompatActivity {
                 Intent intent = new Intent(UserProfileViewActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish();
+            }
+        });
+
+        Button editProfile = findViewById(R.id.editProfileButton);
+        editProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(UserProfileViewActivity.this, UpdateProfileActivity.class);
+                startActivity(intent);
             }
         });
 
