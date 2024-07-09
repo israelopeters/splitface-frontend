@@ -4,6 +4,7 @@ import com.northcoders.tatooine.model.Artist;
 import com.northcoders.tatooine.model.Tattoo;
 
 import retrofit2.Call;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
@@ -16,5 +17,9 @@ public interface ArtistAPIService {
 
     @GET("artist/{id}")
     Call<Artist> getArtistById(
+            @Path("id") Long id);
+
+    @DELETE("artist/{id}")
+    Call<String> deleteArtistById(
             @Path("id") Long id);
 }

@@ -66,4 +66,25 @@ public class ArtistRepository {
         return artistLiveData;
     }
 
+    public MutableLiveData<String> deleteArtistById(Long artistId) {
+        MutableLiveData<String> result = new MutableLiveData<>();
+        apiService.deleteArtistById(artistId).enqueue(new Callback<String>() {
+
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if(response.isSuccessful()){
+                    result.setValue(response.body());
+                } else {
+                    result.setValue(null);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable throwable) {
+
+            }
+        });
+        return result;
+    }
+
 }

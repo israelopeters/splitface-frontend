@@ -30,4 +30,8 @@ public class UserProfileViewModel extends AndroidViewModel {
     public LiveData<List<Tattoo>> getAllTattoosFromSpecificArtist(Long id) {
         return tattooRepository.getMutableLiveDataForArtistSpecificTattoos(id);
     }
+
+    public LiveData<String> deleteArtistProfile(Long id){
+        return artistRepository.deleteArtistById(id);
+    }
 }

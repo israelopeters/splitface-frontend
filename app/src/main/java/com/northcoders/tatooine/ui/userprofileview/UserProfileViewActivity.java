@@ -2,6 +2,9 @@ package com.northcoders.tatooine.ui.userprofileview;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -17,6 +20,7 @@ import com.northcoders.tatooine.model.Artist;
 import com.northcoders.tatooine.model.Style;
 import com.northcoders.tatooine.model.Tattoo;
 import com.northcoders.tatooine.ui.addpost.AddPostActivity;
+import com.northcoders.tatooine.ui.login.LoginActivity;
 import com.northcoders.tatooine.ui.main.MainActivity;
 
 import java.util.ArrayList;
@@ -68,6 +72,19 @@ public class UserProfileViewActivity extends AppCompatActivity {
             }
             return false;
         });
+
+        Button deleteProfile = findViewById(R.id.deleteProfileButton);
+        deleteProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                viewModel.deleteArtistProfile(getIntent().getLongExtra("artist", -1L));
+                Toast.makeText(UserProfileViewActivity.this, "PROFILE DELETED", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(UserProfileViewActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
     }
 
     private void getArtistDetails(Long artistId) {
