@@ -87,4 +87,24 @@ public class ArtistRepository {
         return result;
     }
 
+    public MutableLiveData<Artist> editArtistById(Long artistId, Artist artist) {
+        MutableLiveData<Artist> artistLiveData = new MutableLiveData<>();
+        apiService.editProfile(artistId, artist).enqueue(new Callback<Artist>() {
+            @Override
+            public void onResponse(Call<Artist> call, Response<Artist> response) {
+                if (response.isSuccessful()) {
+                    artistLiveData.setValue(response.body());
+                } else {
+                    artistLiveData.setValue(null);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Artist> call, Throwable throwable) {
+
+            }
+        });
+        return artistLiveData;
+    }
+
 }
