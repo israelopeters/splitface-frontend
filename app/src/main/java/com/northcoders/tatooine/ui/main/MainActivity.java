@@ -89,15 +89,10 @@ public class MainActivity extends AppCompatActivity {
                 if (tattoosFromLiveData != null) {
                     tattoos.addAll(tattoosFromLiveData);
                 }
-                List<Style> styles = new ArrayList<>();
-                styles.add(new Style(1L, "REALISM"));
-                styles.add(new Style(2L, "FINE LINE"));
-                styles.add(new Style(3L, "WATERCOLOUR"));
-                tattoos.add(new Tattoo(1L, "£1000", "", "3 hours", styles, "Now"));
-                tattoos.add(new Tattoo(1L, "£100", "", "3 hours", styles, "Now"));
                 adapter.notifyDataSetChanged();
 
             }
         });
     }
+
 }

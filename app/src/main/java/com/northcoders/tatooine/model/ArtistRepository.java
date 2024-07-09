@@ -43,6 +43,23 @@ public class ArtistRepository {
         });
     }
 
+    public MutableLiveData<String> signUp(Artist artist){
+        MutableLiveData<String> liveData = new MutableLiveData<>();
+
+        apiService.signUp(artist).enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                liveData.setValue(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable throwable) {
+                liveData.setValue(null);
+            }
+        });
+        return liveData;
+    }
+
     public interface LoginCallback {
         void onSuccess(Artist artist);
         void onError(String error);

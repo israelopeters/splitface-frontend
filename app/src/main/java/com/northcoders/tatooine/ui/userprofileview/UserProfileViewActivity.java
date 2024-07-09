@@ -95,6 +95,7 @@ public class UserProfileViewActivity extends AppCompatActivity {
             }
         });
 
+
     }
 
     private void getArtistDetails(Long artistId) {
