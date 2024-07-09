@@ -25,8 +25,8 @@ public interface ArtistAPIService {
     Call<String> deleteArtistById(
             @Path("id") Long id);
 
-    @PUT("artist/{id}")
+    @PUT("artist")
     Call<Artist> editProfile(
-            @Path("id") Long id,
+            @Query("id") Long id,
             @Body Artist artist);
 }

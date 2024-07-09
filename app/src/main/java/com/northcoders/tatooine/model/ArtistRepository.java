@@ -14,6 +14,11 @@ import retrofit2.Response;
 
 public class ArtistRepository {
     private ArtistAPIService apiService;
+    private Application application;
+
+    public ArtistRepository(Application application) {
+        this.application = application;
+    }
 
     public ArtistRepository() {
         apiService = RetrofitInstance.getArtistService();
@@ -100,8 +105,8 @@ public class ArtistRepository {
             }
 
             @Override
-            public void onFailure(Call<Artist> call, Throwable throwable) {
-
+            public void onFailure(Call<Artist> call, Throwable t) {
+                artistLiveData.setValue(null);
             }
         });
         return artistLiveData;

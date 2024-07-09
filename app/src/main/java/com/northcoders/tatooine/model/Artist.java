@@ -35,6 +35,13 @@ public class Artist {
         this.tattoos = tattoos;
     }
 
+    public Artist(String name, String location, String email, String password) {
+        this.name = name;
+        this.location = location;
+        this.email = email;
+        this.password = password;
+    }
+
     public Long getId() {
         return id;
     }
