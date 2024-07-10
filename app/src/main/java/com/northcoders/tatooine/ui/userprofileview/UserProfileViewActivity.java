@@ -2,6 +2,10 @@ package com.northcoders.tatooine.ui.userprofileview;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -18,16 +22,14 @@ import com.northcoders.tatooine.model.Artist;
 import com.northcoders.tatooine.model.Style;
 
 import com.northcoders.tatooine.model.Tattoo;
-import com.northcoders.tatooine.service.ArtistAPIService;
 import com.northcoders.tatooine.ui.addpost.AddPostActivity;
+//import com.northcoders.tatooine.ui.googlemaps.MapsActivity;
+import com.northcoders.tatooine.ui.login.LoginActivity;
 import com.northcoders.tatooine.ui.main.MainActivity;
+import com.northcoders.tatooine.ui.updateprofile.UpdateProfileActivity;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class UserProfileViewActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
@@ -35,6 +37,7 @@ public class UserProfileViewActivity extends AppCompatActivity {
     private TattooAdapter adapter;
     private UserProfileViewModel viewModel;
     private ActivityUserProfileViewBinding binding;
+    private Artist artist;
     BottomNavigationView bottomNavigationView;
 
     @Override
@@ -44,17 +47,17 @@ public class UserProfileViewActivity extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_user_profile_view);
         viewModel = new ViewModelProvider(this).get(UserProfileViewModel.class);
 
-        Long artistId = (long) getIntent().getIntExtra("artist_id", -1);
+        tattoos = new ArrayList<>();
+        Long artistId = getIntent().getLongExtra("artist", -1L);
+        getArtistDetails(artistId);
 
         recyclerView = binding.recyclerViewOfPosts;
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
 
-        tattoos = new ArrayList<>();
         adapter = new TattooAdapter(tattoos, this);
         recyclerView.setAdapter(adapter);
 
-        getAllTattoos(artistId);
 
         // Bottom Navigation Bar functionality
         bottomNavigationView = findViewById(R.id.bottomNavBarView);
@@ -74,6 +77,51 @@ public class UserProfileViewActivity extends AppCompatActivity {
             }
             return false;
         });
+
+        Button deleteProfile = findViewById(R.id.deleteProfileButton);
+        deleteProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                viewModel.deleteArtistProfile(getIntent().getLongExtra("artist", -1L));
+                Toast.makeText(UserProfileViewActivity.this, "PROFILE DELETED", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(UserProfileViewActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        Button editProfile = findViewById(R.id.editProfileButton);
+        editProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(UserProfileViewActivity.this, UpdateProfileActivity.class);
+                startActivity(intent);
+            }
+        });
+
+//        Button mapView = findViewById(R.id.locationButton);
+//        mapView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(UserProfileViewActivity.this, MapsActivity.class);
+//                startActivity(intent);
+//            }
+//        });
+
+    }
+
+    private void getArtistDetails(Long artistId) {
+        viewModel.getArtistDetails(artistId).observe(this, new Observer<Artist>() {
+            @Override
+            public void onChanged(Artist artistFromLiveData) {
+                if (artistFromLiveData != null) {
+                    artist = artistFromLiveData;
+                    binding.setArtist(artist);
+                    adapter.notifyDataSetChanged();
+                    getAllTattoos(artist.getId());
+                }
+            }
+        });
     }
 
     private void getAllTattoos(Long id) {
@@ -82,18 +130,16 @@ public class UserProfileViewActivity extends AppCompatActivity {
             public void onChanged(List<Tattoo> tattoosFromLiveData) {
                 tattoos.clear();
                 if (tattoosFromLiveData != null) {
+                    Log.i("tattoos", tattoosFromLiveData.toString());
                     tattoos.addAll(tattoosFromLiveData);
+                    Log.i("tattoos", tattoos.toString());
                 }
-                List<Tattoo.Style> styles = new ArrayList<>();
-                styles.add(new Tattoo.Style(1L, "REALISM"));
-                styles.add(new Tattoo.Style(2L, "FINE LINE"));
-                styles.add(new Tattoo.Style(3L, "WATERCOLOUR"));
-                tattoos.add(new Tattoo(1L, "£1000", "", "3 hours", styles, "Now"));
-                tattoos.add(new Tattoo(1L, "£100", "", "3 hours", styles, "Now"));
+
                 adapter.notifyDataSetChanged();
             }
         });
     }
+
 
     private void displayInRecyclerView(){
 
