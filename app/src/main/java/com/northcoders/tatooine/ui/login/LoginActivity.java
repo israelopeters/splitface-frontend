@@ -16,6 +16,8 @@ import androidx.core.view.WindowInsetsCompat;
 import com.northcoders.tatooine.R;
 import com.northcoders.tatooine.model.Artist;
 import com.northcoders.tatooine.model.ArtistRepository;
+import com.northcoders.tatooine.ui.main.MainActivity;
+import com.northcoders.tatooine.ui.signup.SignUpActivity;
 import com.northcoders.tatooine.ui.userprofileview.UserProfileViewActivity;
 
 public class LoginActivity extends AppCompatActivity {
@@ -58,6 +60,24 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(LoginActivity.this, "LOGIN UNSUCCESSFUL: " + error, Toast.LENGTH_SHORT).show();
                 }
             });
+        });
+
+        Button signUp = findViewById(R.id.signUpBtn);
+        signUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        Button bckBtn = findViewById(R.id.backToMain);
+        bckBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
         });
     }
 }

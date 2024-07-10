@@ -20,6 +20,7 @@ import com.northcoders.tatooine.model.Artist;
 import com.northcoders.tatooine.model.Style;
 import com.northcoders.tatooine.model.Tattoo;
 import com.northcoders.tatooine.ui.addpost.AddPostActivity;
+import com.northcoders.tatooine.ui.googlemaps.MapsActivity;
 import com.northcoders.tatooine.ui.login.LoginActivity;
 import com.northcoders.tatooine.ui.main.MainActivity;
 import com.northcoders.tatooine.ui.updateprofile.UpdateProfileActivity;
@@ -95,6 +96,14 @@ public class UserProfileViewActivity extends AppCompatActivity {
             }
         });
 
+        Button mapView = findViewById(R.id.locationButton);
+        mapView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(UserProfileViewActivity.this, MapsActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
