@@ -1,14 +1,10 @@
 package com.northcoders.tatooine.model;
 
-import androidx.databinding.BaseObservable;
-import androidx.databinding.Bindable;
-import androidx.databinding.library.baseAdapters.BR;
-
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class Artist extends BaseObservable {
+public class Artist {
     @SerializedName("id")
     private Long id;
 
@@ -39,34 +35,22 @@ public class Artist extends BaseObservable {
         this.tattoos = tattoos;
     }
 
-    public Artist(String name, String location, String email, String password) {
-        this.name = name;
-        this.location = location;
-        this.email = email;
-        this.password = password;
-    }
-
-    @Bindable
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
-        notifyPropertyChanged(BR.id);
     }
 
-    @Bindable
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
-        notifyPropertyChanged(BR.artist);
     }
 
-    @Bindable
     public String getLocation() {
         return location;
     }
@@ -75,7 +59,6 @@ public class Artist extends BaseObservable {
         this.location = location;
     }
 
-    @Bindable
     public String getEmail() {
         return email;
     }
@@ -84,7 +67,6 @@ public class Artist extends BaseObservable {
         this.email = email;
     }
 
-    @Bindable
     public String getPassword() {
         return password;
     }
@@ -93,7 +75,6 @@ public class Artist extends BaseObservable {
         this.password = password;
     }
 
-    @Bindable
     public List<Tattoo> getTattoos() {
         return tattoos;
     }

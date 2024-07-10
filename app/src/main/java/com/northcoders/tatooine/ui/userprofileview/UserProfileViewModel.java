@@ -6,8 +6,6 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
-import com.northcoders.tatooine.model.Artist;
-import com.northcoders.tatooine.model.ArtistRepository;
 import com.northcoders.tatooine.model.Tattoo;
 import com.northcoders.tatooine.model.TattooRepository;
 import retrofit2.http.Body;
@@ -15,24 +13,18 @@ import retrofit2.http.Body;
 import java.util.List;
 
 public class UserProfileViewModel extends AndroidViewModel {
-    private TattooRepository tattooRepository;
-    private ArtistRepository artistRepository;
+    TattooRepository repository;
 
     public UserProfileViewModel(@NonNull Application application) {
         super(application);
-        this.tattooRepository = new TattooRepository(application);
-        this.artistRepository = new ArtistRepository();
+        this.repository = new TattooRepository(application);
     }
 
-    public LiveData<Artist> getArtistDetails(Long artistId) {
-        return artistRepository.getArtistDetails(artistId);
+    public LiveData<List<Tattoo>> getAllTattoos(){
+        return repository.getMutableLiveData();
     }
 
-    public LiveData<List<Tattoo>> getAllTattoosFromSpecificArtist(Long id) {
-        return tattooRepository.getMutableLiveDataForArtistSpecificTattoos(id);
-    }
-
-    public LiveData<String> deleteArtistProfile(Long id){
-        return artistRepository.deleteArtistById(id);
+    public LiveData<List<Tattoo>> getAllTattoosFromSpecificArtist(Long id){
+        return repository.getMutableLiveDataForArtistSpecificTattoos(id);
     }
 }
