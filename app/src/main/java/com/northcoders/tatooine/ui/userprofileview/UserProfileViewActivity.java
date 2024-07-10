@@ -13,12 +13,21 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.northcoders.tatooine.R;
 import com.northcoders.tatooine.databinding.ActivityUserProfileViewBinding;
+
+import com.northcoders.tatooine.model.Artist;
+import com.northcoders.tatooine.model.Style;
+
 import com.northcoders.tatooine.model.Tattoo;
+import com.northcoders.tatooine.service.ArtistAPIService;
 import com.northcoders.tatooine.ui.addpost.AddPostActivity;
 import com.northcoders.tatooine.ui.main.MainActivity;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class UserProfileViewActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
@@ -35,6 +44,8 @@ public class UserProfileViewActivity extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_user_profile_view);
         viewModel = new ViewModelProvider(this).get(UserProfileViewModel.class);
 
+        Long artistId = (long) getIntent().getIntExtra("artist_id", -1);
+
         recyclerView = binding.recyclerViewOfPosts;
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
@@ -43,7 +54,7 @@ public class UserProfileViewActivity extends AppCompatActivity {
         adapter = new TattooAdapter(tattoos, this);
         recyclerView.setAdapter(adapter);
 
-        getAllTattoos();
+        getAllTattoos(artistId);
 
         // Bottom Navigation Bar functionality
         bottomNavigationView = findViewById(R.id.bottomNavBarView);
@@ -65,8 +76,8 @@ public class UserProfileViewActivity extends AppCompatActivity {
         });
     }
 
-    private void getAllTattoos() {
-        viewModel.getAllTattoos().observe(this, new Observer<List<Tattoo>>() {
+    private void getAllTattoos(Long id) {
+        viewModel.getAllTattoosFromSpecificArtist(id).observe(this, new Observer<List<Tattoo>>() {
             @Override
             public void onChanged(List<Tattoo> tattoosFromLiveData) {
                 tattoos.clear();
@@ -87,8 +98,7 @@ public class UserProfileViewActivity extends AppCompatActivity {
     private void displayInRecyclerView(){
 
         List<Tattoo> testTatts = new ArrayList<>();
-//        testTatts.add(new Tattoo(1L, " ", "£1", null, null));
-//        testTatts.add(new Tattoo(2L, "This is a descrip", "£1", null, null));
+
         recyclerView = binding.recyclerViewOfPosts;
         adapter = new TattooAdapter(testTatts, this);
         recyclerView.setAdapter(adapter);
@@ -97,4 +107,5 @@ public class UserProfileViewActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         adapter.notifyDataSetChanged();
     }
+
 }

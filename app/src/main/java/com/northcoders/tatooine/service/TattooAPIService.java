@@ -5,7 +5,13 @@ import com.northcoders.tatooine.model.Tattoo;
 import java.util.List;
 
 import retrofit2.Call;
+
 import retrofit2.http.*;
+
+import retrofit2.http.GET;
+import retrofit2.http.Path;
+import retrofit2.http.Query;
+
 
 public interface TattooAPIService {
     @GET("/tattoo/tattoos") // add path
@@ -20,6 +26,9 @@ public interface TattooAPIService {
     @DELETE("/{id}")
     Call<Tattoo> deletePost(@Path("id") long postId);
 
-//    @GET("tattoo/artist?id=") // add id aspect to path
-//    Call<List<Tattoo>> getAllTattoosFromArtist();
+
+    @GET("tattoos/artist")
+    Call<List<Tattoo>> getAllTattoosFromArtist(
+            @Query("id")Long id
+    );
 }

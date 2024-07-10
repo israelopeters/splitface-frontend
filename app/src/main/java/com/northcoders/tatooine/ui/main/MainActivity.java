@@ -1,13 +1,18 @@
 package com.northcoders.tatooine.ui.main;
 
+
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.SearchView;
 import android.widget.Toast;
+import android.content.Context;
+import android.view.MenuItem;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
@@ -23,10 +28,11 @@ import com.northcoders.tatooine.databinding.ActivityMainBinding;
 import com.northcoders.tatooine.model.Tattoo;
 import com.northcoders.tatooine.ui.updatepost.UpdatePostActivity;
 import com.northcoders.tatooine.ui.userprofileview.UserProfileViewActivity;
-
 import com.northcoders.tatooine.ui.addpost.AddPostActivity;
 import org.jetbrains.annotations.NotNull;
 
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;

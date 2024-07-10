@@ -49,6 +49,7 @@ public class TattooRepository {
         return liveTattooData;
     }
 
+
     public void addPost(Tattoo post, long artistId) {
         Call<Tattoo> call = RetrofitInstance.getService().addPost(post, artistId);
 
@@ -110,5 +111,21 @@ public class TattooRepository {
                 call.cancel();
             }
         });
+    public MutableLiveData<List<Tattoo>> getMutableLiveDataForArtistSpecificTattoos(Long id) {
+        TattooAPIService tattooAPIService = RetrofitInstance.getService();
+        Call<List<Tattoo>> call = tattooAPIService.getAllTattoosFromArtist(id);
+        call.enqueue(new Callback<List<Tattoo>>() {
+            @Override
+            public void onResponse(Call<List<Tattoo>> call, Response<List<Tattoo>> response) {
+                List<Tattoo> tattoos = response.body();
+                liveTattooData.setValue(tattoos);
+            }
+
+            @Override
+            public void onFailure(Call<List<Tattoo>> call, Throwable throwable) {
+
+            }
+        });
+        return liveTattooData;
     }
 }

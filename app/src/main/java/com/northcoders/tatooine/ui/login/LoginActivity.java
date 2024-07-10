@@ -1,5 +1,6 @@
 package com.northcoders.tatooine.ui.login;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -13,8 +14,13 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.northcoders.tatooine.R;
+import com.northcoders.tatooine.model.Artist;
+import com.northcoders.tatooine.model.ArtistRepository;
+import com.northcoders.tatooine.ui.userprofileview.UserProfileViewActivity;
 
 public class LoginActivity extends AppCompatActivity {
+
+    private ArtistRepository artistRepository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,23 +33,31 @@ public class LoginActivity extends AppCompatActivity {
             return insets;
         });
 
-        TextView username = (TextView) findViewById(R.id.email);
-        TextView password = (TextView) findViewById(R.id.passcode);
+        artistRepository = new ArtistRepository();
 
+        TextView username = findViewById(R.id.username);
+        TextView password = findViewById(R.id.passcode);
         Button signInButton = findViewById(R.id.signInButton);
 
         signInButton.setOnClickListener(view -> {
             String usernameInput = username.getText().toString();
             String passwordInput = password.getText().toString();
 
-            if ("admin".equals(usernameInput) && "adminpass".equals(passwordInput)) {
-                // Correct password
-                Toast.makeText(LoginActivity.this, "LOGIN SUCCESSFUL", Toast.LENGTH_SHORT).show();
-            } else {
-                // Failed login
-                Toast.makeText(LoginActivity.this, "LOGIN UNSUCCESSFUL", Toast.LENGTH_SHORT).show();
-            }
-        });
+            artistRepository.login(usernameInput, passwordInput, new ArtistRepository.LoginCallback() {
+                @Override
+                public void onSuccess(Artist artist) {
+                    Toast.makeText(LoginActivity.this, "LOGIN SUCCESSFUL", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(LoginActivity.this, UserProfileViewActivity.class);
+                    intent.putExtra("artist", artist.getId());
+                    startActivity(intent);
+                    finish();
+                }
 
+                @Override
+                public void onError(String error) {
+                    Toast.makeText(LoginActivity.this, "LOGIN UNSUCCESSFUL: " + error, Toast.LENGTH_SHORT).show();
+                }
+            });
+        });
     }
 }
