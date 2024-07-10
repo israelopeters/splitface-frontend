@@ -10,6 +10,7 @@ import com.northcoders.tatooine.model.Artist;
 import com.northcoders.tatooine.model.ArtistRepository;
 import com.northcoders.tatooine.model.Tattoo;
 import com.northcoders.tatooine.model.TattooRepository;
+import retrofit2.http.Body;
 
 import java.util.List;
 

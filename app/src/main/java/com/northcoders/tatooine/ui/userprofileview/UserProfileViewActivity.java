@@ -17,8 +17,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.northcoders.tatooine.R;
 import com.northcoders.tatooine.databinding.ActivityUserProfileViewBinding;
+
 import com.northcoders.tatooine.model.Artist;
 import com.northcoders.tatooine.model.Style;
+
 import com.northcoders.tatooine.model.Tattoo;
 import com.northcoders.tatooine.ui.addpost.AddPostActivity;
 //import com.northcoders.tatooine.ui.googlemaps.MapsActivity;
@@ -132,8 +134,24 @@ public class UserProfileViewActivity extends AppCompatActivity {
                     tattoos.addAll(tattoosFromLiveData);
                     Log.i("tattoos", tattoos.toString());
                 }
+
                 adapter.notifyDataSetChanged();
             }
         });
     }
+
+
+    private void displayInRecyclerView(){
+
+        List<Tattoo> testTatts = new ArrayList<>();
+
+        recyclerView = binding.recyclerViewOfPosts;
+        adapter = new TattooAdapter(testTatts, this);
+        recyclerView.setAdapter(adapter);
+        LinearLayoutManager layout = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layout);
+        recyclerView.setHasFixedSize(true);
+        adapter.notifyDataSetChanged();
+    }
+
 }

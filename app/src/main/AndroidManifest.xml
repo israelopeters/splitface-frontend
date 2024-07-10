@@ -3,6 +3,9 @@
           xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <!-- Glide permissions -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES"/>
 
     <application
             android:allowBackup="true"
@@ -32,7 +35,7 @@
 
         <meta-data
                 android:name="CLOUDINARY_URL"
-                android:value="cloudinary://@dl5xz5v2h"/>
+                android:value="cloudinary://dl5xz5v2h"/>
 
 <!--        <meta-data-->
 <!--            android:name="com.google.android.geo.API_KEY"-->
@@ -63,6 +66,9 @@
                 android:label="@string/title_activity_login"/>
         <activity
                 android:name=".ui.addpost.AddPostActivity"
+                android:exported="false"/>
+        <activity
+                android:name=".ui.updatepost.UpdatePostActivity"
                 android:exported="false"/>
         <activity
                 android:name=".ui.main.MainActivity"
