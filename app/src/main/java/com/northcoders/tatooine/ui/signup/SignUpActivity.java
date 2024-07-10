@@ -13,6 +13,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.northcoders.tatooine.R;
 import com.northcoders.tatooine.model.Artist;
 import com.northcoders.tatooine.ui.login.LoginActivity;
@@ -52,7 +53,7 @@ public class SignUpActivity extends AppCompatActivity {
             }
         });
 
-        Button bckBtn = findViewById(R.id.backBtn);
+        FloatingActionButton bckBtn = (FloatingActionButton) findViewById(R.id.backBtn);
         bckBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

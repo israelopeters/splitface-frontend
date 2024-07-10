@@ -14,7 +14,7 @@ public class UpdateProfileViewModel extends AndroidViewModel {
 
     public UpdateProfileViewModel(@NonNull Application application) {
         super(application);
-        artistRepository = new ArtistRepository(application);
+        artistRepository = new ArtistRepository();
     }
 
     public LiveData<Artist> editArtistProfile(Long id, Artist artist){

@@ -10,10 +10,10 @@ import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface TattooAPIService {
-    @GET("tattoo") // add path
+    @GET("tattoo/tattoos") // add path
     Call<List<Tattoo>> getAllTattoos();
 
-    @GET("tattoos/artist")
+    @GET("tattoo/tattoos/artist")
     Call<List<Tattoo>> getAllTattoosFromArtist(
             @Query("id")Long id
     );

@@ -2,6 +2,7 @@ package com.northcoders.tatooine.ui.userprofileview;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -20,7 +21,7 @@ import com.northcoders.tatooine.model.Artist;
 import com.northcoders.tatooine.model.Style;
 import com.northcoders.tatooine.model.Tattoo;
 import com.northcoders.tatooine.ui.addpost.AddPostActivity;
-import com.northcoders.tatooine.ui.googlemaps.MapsActivity;
+//import com.northcoders.tatooine.ui.googlemaps.MapsActivity;
 import com.northcoders.tatooine.ui.login.LoginActivity;
 import com.northcoders.tatooine.ui.main.MainActivity;
 import com.northcoders.tatooine.ui.updateprofile.UpdateProfileActivity;
@@ -44,17 +45,17 @@ public class UserProfileViewActivity extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_user_profile_view);
         viewModel = new ViewModelProvider(this).get(UserProfileViewModel.class);
 
+        tattoos = new ArrayList<>();
         Long artistId = getIntent().getLongExtra("artist", -1L);
+        getArtistDetails(artistId);
 
         recyclerView = binding.recyclerViewOfPosts;
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
 
-        tattoos = new ArrayList<>();
         adapter = new TattooAdapter(tattoos, this);
         recyclerView.setAdapter(adapter);
 
-        getArtistDetails(artistId);
 
         // Bottom Navigation Bar functionality
         bottomNavigationView = findViewById(R.id.bottomNavBarView);
@@ -96,14 +97,14 @@ public class UserProfileViewActivity extends AppCompatActivity {
             }
         });
 
-        Button mapView = findViewById(R.id.locationButton);
-        mapView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(UserProfileViewActivity.this, MapsActivity.class);
-                startActivity(intent);
-            }
-        });
+//        Button mapView = findViewById(R.id.locationButton);
+//        mapView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(UserProfileViewActivity.this, MapsActivity.class);
+//                startActivity(intent);
+//            }
+//        });
 
     }
 
@@ -127,7 +128,9 @@ public class UserProfileViewActivity extends AppCompatActivity {
             public void onChanged(List<Tattoo> tattoosFromLiveData) {
                 tattoos.clear();
                 if (tattoosFromLiveData != null) {
+                    Log.i("tattoos", tattoosFromLiveData.toString());
                     tattoos.addAll(tattoosFromLiveData);
+                    Log.i("tattoos", tattoos.toString());
                 }
                 adapter.notifyDataSetChanged();
             }

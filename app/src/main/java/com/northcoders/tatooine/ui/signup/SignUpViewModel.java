@@ -14,6 +14,7 @@ public class SignUpViewModel extends AndroidViewModel {
 
     public SignUpViewModel(@NonNull Application application) {
         super(application);
+        artistRepository = new ArtistRepository();
     }
 
     public MutableLiveData<String> signUp(Artist artist){

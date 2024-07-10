@@ -1,6 +1,7 @@
 package com.northcoders.tatooine.model;
 
 import android.app.Application;
+import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -116,8 +117,10 @@ public class ArtistRepository {
             public void onResponse(Call<Artist> call, Response<Artist> response) {
                 if (response.isSuccessful()) {
                     artistLiveData.setValue(response.body());
+                    Log.i("Artist", response.body().toString());
                 } else {
                     artistLiveData.setValue(null);
+                    Log.i("Artist", "Data set null");
                 }
             }
 
