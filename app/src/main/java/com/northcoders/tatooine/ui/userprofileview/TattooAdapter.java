@@ -2,6 +2,7 @@ package com.northcoders.tatooine.ui.userprofileview;
 
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.northcoders.tatooine.R;
 import com.northcoders.tatooine.databinding.ArtistProfileImagesLayoutBinding;
+import com.northcoders.tatooine.databinding.PostLayoutBinding;
 import com.northcoders.tatooine.model.Tattoo;
 
 import java.net.MalformedURLException;
@@ -20,10 +22,12 @@ import java.util.List;
 public class TattooAdapter extends RecyclerView.Adapter<TattooAdapter.TattooViewHolder> {
     private List<Tattoo> tattoos;
     private Context context;
+    private com.northcoders.tatooine.ui.userprofileview.RecyclerViewInterface recyclerViewInterface;
 
-    public TattooAdapter(List<Tattoo> tattoos, Context context) {
+    public TattooAdapter(List<Tattoo> tattoos, Context context, com.northcoders.tatooine.ui.userprofileview.RecyclerViewInterface recyclerViewInterface) {
         this.tattoos = tattoos;
         this.context = context;
+        this.recyclerViewInterface = recyclerViewInterface;
     }
 
     @NonNull
@@ -31,7 +35,7 @@ public class TattooAdapter extends RecyclerView.Adapter<TattooAdapter.TattooView
     public TattooViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         ArtistProfileImagesLayoutBinding binding = DataBindingUtil.inflate(layoutInflater, R.layout.artist_profile_images_layout, parent, false);
-        return new TattooViewHolder(binding);
+        return new TattooViewHolder(binding, recyclerViewInterface);
     }
 
     @Override
@@ -57,9 +61,21 @@ public class TattooAdapter extends RecyclerView.Adapter<TattooAdapter.TattooView
     public static class TattooViewHolder extends RecyclerView.ViewHolder {
         private ArtistProfileImagesLayoutBinding binding;
 
-        public TattooViewHolder(ArtistProfileImagesLayoutBinding binding) {
+        public TattooViewHolder(ArtistProfileImagesLayoutBinding binding, RecyclerViewInterface recyclerViewInterface) {
             super(binding.getRoot());
             this.binding = binding;
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (recyclerViewInterface != null) {
+                        int position = getAdapterPosition();
+
+                        if (position != RecyclerView.NO_POSITION) {
+                            recyclerViewInterface.onItemClick(position);
+                        }
+                    }
+                }
+            });
         }
 
         public void bind(Tattoo tattoo) {
