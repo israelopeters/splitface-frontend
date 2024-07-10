@@ -19,20 +19,22 @@ import com.northcoders.tatooine.R;
 import com.northcoders.tatooine.databinding.ActivityUserProfileViewBinding;
 
 import com.northcoders.tatooine.model.Artist;
-import com.northcoders.tatooine.model.Style;
+import com.northcoders.tatooine.model.Tattoo.Style;
 
 import com.northcoders.tatooine.model.Tattoo;
 import com.northcoders.tatooine.ui.addpost.AddPostActivity;
 //import com.northcoders.tatooine.ui.googlemaps.MapsActivity;
 import com.northcoders.tatooine.ui.login.LoginActivity;
 import com.northcoders.tatooine.ui.main.MainActivity;
+import com.northcoders.tatooine.ui.updatepost.UpdatePostActivity;
 import com.northcoders.tatooine.ui.updateprofile.UpdateProfileActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserProfileViewActivity extends AppCompatActivity {
+public class UserProfileViewActivity extends AppCompatActivity implements RecyclerViewInterface{
     private RecyclerView recyclerView;
+    private RecyclerViewInterface recyclerViewInterface;
     private ArrayList<Tattoo> tattoos;
     private TattooAdapter adapter;
     private UserProfileViewModel viewModel;
@@ -55,8 +57,18 @@ public class UserProfileViewActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
 
-        adapter = new TattooAdapter(tattoos, this);
+        adapter = new TattooAdapter(tattoos, this, this);
         recyclerView.setAdapter(adapter);
+
+        //        recyclerView = binding.recyclerViewMain;
+        //        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+        //
+        //        adapter = new PostAdapter(tattoos, this, this);
+        //        recyclerView.setAdapter(adapter);
+        //
+        //        recyclerView.setHasFixedSize(true);
+        //
+        //        adapter.notifyDataSetChanged();
 
 
         // Bottom Navigation Bar functionality
@@ -146,12 +158,26 @@ public class UserProfileViewActivity extends AppCompatActivity {
         List<Tattoo> testTatts = new ArrayList<>();
 
         recyclerView = binding.recyclerViewOfPosts;
-        adapter = new TattooAdapter(testTatts, this);
+        adapter = new TattooAdapter(testTatts, this, recyclerViewInterface);
         recyclerView.setAdapter(adapter);
         LinearLayoutManager layout = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layout);
         recyclerView.setHasFixedSize(true);
         adapter.notifyDataSetChanged();
+
     }
 
+    @Override
+    public void onItemClick(int position) {
+        Intent intent  = new Intent(this, UpdatePostActivity.class);
+        Tattoo post = tattoos.get(position);
+        Log.i("TATTOO ::: ", "TEST: " + post.getPrice());
+        Log.i("TATTOO ::: ", "TEST: " + post.getHoursWorked());
+        Log.i("TATTOO ::: ", "TEST: " + post.getTimePosted());
+        Log.i("TATTOO ::: ", "TEST: " + post.getDesign());
+        Log.i("TATTOO ::: ", "TEST: " + post.getStyles().toString());
+        intent.putExtra("post", tattoos.get(position));
+        intent.putExtra("styles", tattoos.get(position).getStyles());
+        startActivity(intent);
+    }
 }

@@ -133,16 +133,16 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
 
     @Override
     public void onItemClicked(int position) {
-        Intent intent  = new Intent(this, UpdatePostActivity.class);
-        Tattoo post = tattoos.get(position);
-        Log.i("TATTOO ::: ", "TEST: " + post.getPrice());
-        Log.i("TATTOO ::: ", "TEST: " + post.getHoursWorked());
-        Log.i("TATTOO ::: ", "TEST: " + post.getTimePosted());
-        Log.i("TATTOO ::: ", "TEST: " + post.getDesign());
-        Log.i("TATTOO ::: ", "TEST: " + post.getStyles().toString());
-        intent.putExtra("post", tattoos.get(position));
-        intent.putExtra("styles", tattoos.get(position).getStyles());
-        startActivity(intent);
+//        Intent intent  = new Intent(this, UpdatePostActivity.class);
+//        Tattoo post = tattoos.get(position);
+//        Log.i("TATTOO ::: ", "TEST: " + post.getPrice());
+//        Log.i("TATTOO ::: ", "TEST: " + post.getHoursWorked());
+//        Log.i("TATTOO ::: ", "TEST: " + post.getTimePosted());
+//        Log.i("TATTOO ::: ", "TEST: " + post.getDesign());
+//        Log.i("TATTOO ::: ", "TEST: " + post.getStyles().toString());
+//        intent.putExtra("post", tattoos.get(position));
+//        intent.putExtra("styles", tattoos.get(position).getStyles());
+//        startActivity(intent);
     }
 
 }
