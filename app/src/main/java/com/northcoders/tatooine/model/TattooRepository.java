@@ -4,6 +4,7 @@ import android.app.Application;
 
 import android.util.JsonReader;
 import android.util.Log;
+import android.widget.Toast;
 import androidx.lifecycle.MutableLiveData;
 
 import com.northcoders.tatooine.service.RetrofitInstance;
@@ -46,5 +47,68 @@ public class TattooRepository {
             }
         });
         return liveTattooData;
+    }
+
+    public void addPost(Tattoo post, long artistId) {
+        Call<Tattoo> call = RetrofitInstance.getService().addPost(post, artistId);
+
+        call.enqueue(new Callback<Tattoo>() {
+            int duration = Toast.LENGTH_SHORT;
+
+            @Override
+            public void onResponse(Call<Tattoo> call, Response<Tattoo> response) {
+                CharSequence feedback = "Post added!";
+                Toast.makeText(application.getApplicationContext(), feedback, duration).show();
+            }
+
+            @Override
+            public void onFailure(Call<Tattoo> call, Throwable t) {
+                CharSequence feedback = "Post could not be added!";
+                Toast.makeText(application.getApplicationContext(), feedback, duration).show();
+                call.cancel();
+            }
+        });
+    }
+
+    public void updatePost(Tattoo post, long postId) {
+        Call<Tattoo> call = RetrofitInstance.getService().updatePost(post, postId);
+
+        call.enqueue(new Callback<Tattoo>() {
+            int duration = Toast.LENGTH_SHORT;
+
+            @Override
+            public void onResponse(Call<Tattoo> call, Response<Tattoo> response) {
+                CharSequence feedback = "Post updated!";
+                Toast.makeText(application.getApplicationContext(), feedback, duration).show();
+            }
+
+            @Override
+            public void onFailure(Call<Tattoo> call, Throwable t) {
+                CharSequence feedback = "Post could not be updated!";
+                Toast.makeText(application.getApplicationContext(), feedback, duration).show();
+                call.cancel();
+            }
+        });
+    }
+
+    public void deletePost(long postId) {
+        Call<Tattoo> call = RetrofitInstance.getService().deletePost(postId);
+
+        call.enqueue(new Callback<Tattoo>() {
+            int duration = Toast.LENGTH_SHORT;
+
+            @Override
+            public void onResponse(Call<Tattoo> call, Response<Tattoo> response) {
+                CharSequence feedback = "Post deleted!";
+                Toast.makeText(application.getApplicationContext(), feedback, duration).show();
+            }
+
+            @Override
+            public void onFailure(Call<Tattoo> call, Throwable t) {
+                CharSequence feedback = "Post could not be deleted!";
+                Toast.makeText(application.getApplicationContext(), feedback, duration).show();
+                call.cancel();
+            }
+        });
     }
 }

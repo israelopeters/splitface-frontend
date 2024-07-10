@@ -25,9 +25,9 @@ public class MainViewModel extends AndroidViewModel {
         return repository.getMutableLiveData();
     }
 
-    public void addPost(@Body Tattoo post) {};
+    public void addPost(Tattoo post, long artistId) {repository.addPost(post, artistId);};
 
-    public void updatePost(long id, @Body Tattoo post) {};
+    public void updatePost(Tattoo post, long postId) {repository.updatePost(post, postId);};
 
-    public void deletePost(long id) {};
+    public void deletePost(long postId) {repository.deletePost(postId);};
 }

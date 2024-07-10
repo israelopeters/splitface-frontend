@@ -52,12 +52,12 @@
                                                            android:textColor="#CECBD7"
                                                            android:text="@string/upload_image"
                                                            app:layout_constraintTop_toBottomOf="@+id/uploadedImagePreview"
-                                                           app:layout_constraintBottom_toTopOf="@+id/selectStylesLayout"
+                                                           app:layout_constraintBottom_toTopOf="@+id/selectStylesLayoutUpdatePost"
                                                            app:layout_constraintStart_toStartOf="parent"
                                                            app:layout_constraintEnd_toEndOf="parent"/>
 
 
-        <com.google.android.material.textview.MaterialTextView android:id="@+id/selectStylesLayout"
+        <com.google.android.material.textview.MaterialTextView android:id="@+id/selectStylesLayoutUpdatePost"
                                                                android:layout_height="40dp"
                                                                android:layout_width="match_parent"
                                                                android:background="@drawable/select_styles_background"
@@ -67,6 +67,7 @@
                                                                android:gravity="start"
                                                                android:hint="@string/select_styles"
                                                                android:textColor="@color/black"
+                                                               android:onClick="@{clickHandler::onSelectStylesButtonClicked}"
                                                                app:layout_constraintTop_toBottomOf="@id/inactiveUploadImageButton"
                                                                app:layout_constraintBottom_toTopOf="@id/rateLayout"
                                                                app:layout_constraintStart_toStartOf="parent">
@@ -83,7 +84,7 @@
                                                                app:boxCornerRadiusTopEnd="10dp"
                                                                style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox.Dense"
                                                                app:endIconMode="clear_text"
-                                                               app:layout_constraintTop_toBottomOf="@+id/selectStylesLayout"
+                                                               app:layout_constraintTop_toBottomOf="@+id/selectStylesLayoutUpdatePost"
                                                                app:layout_constraintBottom_toTopOf="@id/timeTakenLayout">
 
             <com.google.android.material.textfield.TextInputEditText android:id="@+id/rateEditView"

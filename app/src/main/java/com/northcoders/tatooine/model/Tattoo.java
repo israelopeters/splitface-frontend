@@ -209,21 +209,25 @@ public class Tattoo extends BaseObservable implements Parcelable {
             }
         };
 
+        @Bindable
         public Long getId() {
             return id;
         }
 
         public void setId(Long id) {
             this.id = id;
+            notifyPropertyChanged(BR.timePosted);
         }
 
 
+        @Bindable
         public String getStyleName() {
             return styleName;
         }
 
         public void setStyleName(String styleName) {
             this.styleName = styleName;
+            notifyPropertyChanged(BR.timePosted);
         }
     }
 }

@@ -1,6 +1,5 @@
 package com.northcoders.tatooine.ui.addpost;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -13,7 +12,6 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.PickVisualMediaRequest;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.databinding.DataBindingUtil;
@@ -33,14 +31,13 @@ import com.northcoders.tatooine.ui.userprofileview.UserProfileViewActivity;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Map;
 
 public class AddPostActivity extends AppCompatActivity {
 
     boolean[] selectedStyles;
     ArrayList<Integer> stylesList = new ArrayList<>();
-    String[] stylesArray = {"REALISM", "WATERCOLOUR", "WILDCARD"};
+    String[] stylesArray = {"Traditional","Animals","Flowers","Birds","Nature scenes","Plants","Mythology","Symbols","Religion","Abstrakt","Pointillism","Tribal","Cybersigilism"};
     BottomNavigationView bottomNavigationView;
     AppCompatImageView uploadImagePreview;
     MaterialButton uploadButton;
@@ -63,7 +60,7 @@ public class AddPostActivity extends AppCompatActivity {
         // Set unbound views
         TextView selectStylesView = findViewById(R.id.selectStylesLayout);
 
-        handler = new AddPostActivityClickHandlers(post, viewModel, this, imageUri, selectStylesView);
+        handler = new AddPostActivityClickHandlers(post, viewModel, this, selectStylesView);
 
         binding.setClickHandler(handler);
         binding.setPost(post);
@@ -114,13 +111,16 @@ public class AddPostActivity extends AppCompatActivity {
         });
 
         MaterialButton submitButton = findViewById(R.id.submitButton);
+
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 MediaManager.init(getApplicationContext());
-                String requestId = MediaManager.get()
+
+                MediaManager.get()
                         .upload(imageUri[0])
-                        .unsigned("preset_1")
+                        .unsigned("aquvzcqs")
                         .callback(new UploadCallback() {
                             @Override
                             public void onStart(String requestId) {
@@ -129,15 +129,31 @@ public class AddPostActivity extends AppCompatActivity {
 
                             @Override
                             public void onProgress(String requestId, long bytes, long totalBytes) {
-                                double progress = (double) bytes / totalBytes;
-                                Toast.makeText(getApplicationContext(), "Uploading:" + progress, Toast.LENGTH_SHORT).show();
+                                int progress = (int) ((double) 100 * bytes / totalBytes);
+                                Toast.makeText(getApplicationContext(), "Uploading: " + progress + "%", Toast.LENGTH_SHORT).show();
                             }
 
                             @Override
                             public void onSuccess(String requestId, Map resultData) {
                                 Toast.makeText(getApplicationContext(), "Upload complete!", Toast.LENGTH_SHORT).show();
 
-                                viewModel.addPost(new Tattoo(2212L, "Price here", "Time taken here", "Image URI here", null, null));
+                                ArrayList<Tattoo.Style> stylesToUpload = new ArrayList<>();
+                                for (int i = 0; i < handler.selectedStylesForPost.size(); i++) {
+                                    String styleName = handler.selectedStylesForPost.get(i);
+                                    stylesToUpload.add(new Tattoo.Style(getStyleId(styleName), styleName));
+                                }
+
+                                post.setStyles(stylesToUpload);
+                                post.setDesign(resultData.get("url").toString());
+
+                                Log.i("TATTOO ::: ", "TEST: " + post.getPrice());
+                                Log.i("TATTOO ::: ", "TEST: " + post.getHoursWorked());
+                                Log.i("TATTOO ::: ", "TEST: " + post.getTimePosted());
+                                Log.i("TATTOO ::: ", "TEST: " + post.getDesign());
+                                Log.i("TATTOO ::: ", "TEST: " + post.getStyles().toString());
+
+                                viewModel.addPost(post, 1);
+
                                 Toast.makeText(getApplicationContext(), "Post added!", Toast.LENGTH_SHORT).show();
 
                                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
@@ -153,9 +169,27 @@ public class AddPostActivity extends AppCompatActivity {
 
                             }
                         }).dispatch();
-
             };
         });
+
+    }
+    public long getStyleId(String style) {
+        switch (style) {
+            case "Traditional" : return 1L;
+            case "Animals" : return 2L;
+            case "Flowers" : return 3L;
+            case "Birds" : return 4L;
+            case "Nature scenes" : return 5L;
+            case "Plants" : return 6L;
+            case "Mythology" : return 7L;
+            case "Symbols" : return 8L;
+            case "Religion" : return 9L;
+            case "Abstrakt" : return 10L;
+            case "Pointillism" : return 11L;
+            case "Tribal" : return 12L;
+            case "Cybersigilism" : return 13L;
+            default: return 1L;
+        }
     }
 
 }

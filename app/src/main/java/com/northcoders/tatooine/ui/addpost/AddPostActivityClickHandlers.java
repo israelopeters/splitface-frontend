@@ -2,23 +2,16 @@ package com.northcoders.tatooine.ui.addpost;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.net.Uri;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
-import com.cloudinary.android.MediaManager;
-import com.cloudinary.android.callback.ErrorInfo;
-import com.cloudinary.android.callback.UploadCallback;
 import com.google.android.material.button.MaterialButton;
 import com.northcoders.tatooine.model.Tattoo;
-import com.northcoders.tatooine.ui.main.MainActivity;
 import com.northcoders.tatooine.ui.main.MainViewModel;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Map;
 
 
 public class AddPostActivityClickHandlers {
@@ -32,17 +25,16 @@ public class AddPostActivityClickHandlers {
     MaterialButton submitButton;
     boolean[] selectedStyles;
     ArrayList<Integer> stylesList = new ArrayList<>();
-    String[] stylesArray = {"REALISM", "WATERCOLOUR", "WILDCARD"};
+    ArrayList<String> selectedStylesForPost = new ArrayList<>();
+    String[] stylesArray = {"Traditional","Animals","Flowers","Birds","Nature scenes","Plants","Mythology","Symbols","Religion","Abstrakt","Pointillism","Tribal","Cybersigilism"};
 
     public AddPostActivityClickHandlers(Tattoo post,
                                         MainViewModel viewModel,
                                         Context context,
-                                        Uri imageUri,
                                         TextView selectStylesView) {
         this.post = post;
         this.viewModel = viewModel;
         this.context = context;
-        this.imageUri = imageUri;
         this.selectStylesView = selectStylesView;
         this.selectedStyles = new boolean[stylesArray.length];
     }
@@ -71,6 +63,7 @@ public class AddPostActivityClickHandlers {
 
                 for (int i = 0; i < stylesList.size(); i++) {
                     stringBuilder.append(stylesArray[stylesList.get(i)]);
+                    selectedStylesForPost.add((stylesArray[stylesList.get(i)]));
                     if (i != stylesList.size()-1) {
                         stringBuilder.append(", ");
                     }
