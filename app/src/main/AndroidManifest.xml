@@ -18,7 +18,9 @@
             android:supportsRtl="true"
             android:theme="@style/Theme.Tatooine"
             android:usesCleartextTraffic="true"
-            tools:targetApi="31">
+
+            tools:targetApi="31"
+        >
         <!--
              TODO: Before you run your application, you need a Google Maps API key.
 
@@ -32,12 +34,12 @@
         -->
 
         <meta-data
-                android:name="com.google.android.geo.API_KEY"
-                android:value="${MAPS_API_KEY}"/>
-
-        <meta-data
                 android:name="CLOUDINARY_URL"
                 android:value="cloudinary://dl5xz5v2h"/>
+
+<!--        <meta-data-->
+<!--            android:name="com.google.android.geo.API_KEY"-->
+<!--            android:value="AIzaSyBX8CK-C5huq9ufI3xpgrk6p_OA7xq6llU"/>-->
 
         <activity
                 android:name=".ui.googlemaps.MapsActivity"

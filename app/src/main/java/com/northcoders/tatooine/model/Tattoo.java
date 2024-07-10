@@ -80,13 +80,13 @@ public class Tattoo extends BaseObservable implements Parcelable {
 
     @Bindable
     public String getStyles() {
-    StringBuilder styleNames = new StringBuilder();
+        StringBuilder styleNames = new StringBuilder();
         for (Style style : styles) {
-        if (styleNames.length() > 0) {
-            styleNames.append(", ");
+            if (styleNames.length() > 0) {
+                styleNames.append(", ");
+            }
+            styleNames.append(style.getStyleName());
         }
-        styleNames.append(style.getStyleName());
-    }
         return styleNames.toString();
     }
 
@@ -209,25 +209,22 @@ public class Tattoo extends BaseObservable implements Parcelable {
             }
         };
 
-        @Bindable
         public Long getId() {
             return id;
         }
 
         public void setId(Long id) {
             this.id = id;
-            notifyPropertyChanged(BR.timePosted);
         }
 
-
-        @Bindable
         public String getStyleName() {
             return styleName;
         }
 
         public void setStyleName(String styleName) {
             this.styleName = styleName;
-            notifyPropertyChanged(BR.timePosted);
+
         }
     }
 }
+
