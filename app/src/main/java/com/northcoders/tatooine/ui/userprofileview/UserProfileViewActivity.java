@@ -13,8 +13,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.northcoders.tatooine.R;
 import com.northcoders.tatooine.databinding.ActivityUserProfileViewBinding;
+
 import com.northcoders.tatooine.model.Artist;
 import com.northcoders.tatooine.model.Style;
+
 import com.northcoders.tatooine.model.Tattoo;
 import com.northcoders.tatooine.service.ArtistAPIService;
 import com.northcoders.tatooine.ui.addpost.AddPostActivity;
@@ -82,7 +84,10 @@ public class UserProfileViewActivity extends AppCompatActivity {
                 if (tattoosFromLiveData != null) {
                     tattoos.addAll(tattoosFromLiveData);
                 }
-                List<Style> styles = List.of(new Style(1L, "REALISM"), new Style(2L, "FINE LINE"), new Style(3L, "WATERCOLOUR"));
+                List<Tattoo.Style> styles = new ArrayList<>();
+                styles.add(new Tattoo.Style(1L, "REALISM"));
+                styles.add(new Tattoo.Style(2L, "FINE LINE"));
+                styles.add(new Tattoo.Style(3L, "WATERCOLOUR"));
                 tattoos.add(new Tattoo(1L, "£1000", "", "3 hours", styles, "Now"));
                 tattoos.add(new Tattoo(1L, "£100", "", "3 hours", styles, "Now"));
                 adapter.notifyDataSetChanged();
@@ -93,8 +98,7 @@ public class UserProfileViewActivity extends AppCompatActivity {
     private void displayInRecyclerView(){
 
         List<Tattoo> testTatts = new ArrayList<>();
-        testTatts.add(new Tattoo(1L, "£1", "", "3hr", null, "1:00"));
-        testTatts.add(new Tattoo(1L, "£1", "", "3hr", null, "1:00"));
+
         recyclerView = binding.recyclerViewOfPosts;
         adapter = new TattooAdapter(testTatts, this);
         recyclerView.setAdapter(adapter);

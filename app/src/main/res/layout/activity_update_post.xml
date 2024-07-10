@@ -4,20 +4,20 @@
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:app="http://schemas.android.com/apk/res-auto">
 
-        <data>
-            <variable name="post" type="com.northcoders.tatooine.model.Tattoo"/>
-            <variable name="clickHandler" type="com.northcoders.tatooine.ui.addpost.AddPostActivityClickHandlers"/>
-        </data>
+    <data>
+        <variable name="post" type="com.northcoders.tatooine.model.Tattoo"/>
+        <variable name="clickHandler" type="com.northcoders.tatooine.ui.updatepost.UpdatePostClickHandlers"/>
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".ui.addpost.AddPostActivity">
+            tools:context=".ui.updatepost.UpdatePostActivity">
 
-        <TextView android:id="@+id/addPostHeader"
+        <TextView android:id="@+id/updatePostHeader"
                   android:layout_width="match_parent"
                   android:layout_height="40dp"
-                  android:text="@string/add_new_post"
+                  android:text="@string/update_post"
                   android:textColor="@color/white"
                   android:paddingHorizontal="20dp"
                   android:paddingTop="10dp"
@@ -28,7 +28,7 @@
                   app:layout_constraintEnd_toEndOf="parent"
                   app:layout_constraintTop_toTopOf="parent"/>
 
-        <androidx.appcompat.widget.AppCompatImageView android:id="@+id/uploadImagePreview"
+        <androidx.appcompat.widget.AppCompatImageView android:id="@+id/uploadedImagePreview"
                                                       android:layout_width="match_parent"
                                                       android:layout_height="200dp"
                                                       android:layout_marginTop="40dp"
@@ -36,10 +36,10 @@
                                                       android:background="@drawable/upload_image_view_background"
                                                       app:layout_constraintStart_toStartOf="parent"
                                                       app:layout_constraintEnd_toEndOf="parent"
-                                                      app:layout_constraintTop_toBottomOf="@id/addPostHeader"
-                                                      app:layout_constraintBottom_toTopOf="@id/uploadImagePreview"/>
+                                                      app:layout_constraintTop_toBottomOf="@id/updatePostHeader"
+                                                      app:layout_constraintBottom_toTopOf="@id/uploadedImagePreview"/>
 
-        <com.google.android.material.button.MaterialButton android:id="@+id/uploadImageButton"
+        <com.google.android.material.button.MaterialButton android:id="@+id/inactiveUploadImageButton"
                                                            android:layout_width="wrap_content"
                                                            android:layout_height="40dp"
                                                            app:cornerRadius="20dp"
@@ -48,15 +48,16 @@
                                                            android:paddingRight="24dp"
                                                            android:textAlignment="center"
                                                            android:shadowColor="#000000"
-                                                           android:backgroundTint="#E4DEE7"
-                                                           android:textColor="#6750A4"
+                                                           android:backgroundTint="#827F84"
+                                                           android:textColor="#CECBD7"
                                                            android:text="@string/upload_image"
-                                                           app:layout_constraintTop_toBottomOf="@+id/uploadImagePreview"
-                                                           app:layout_constraintBottom_toTopOf="@+id/selectStylesLayout"
+                                                           app:layout_constraintTop_toBottomOf="@+id/uploadedImagePreview"
+                                                           app:layout_constraintBottom_toTopOf="@+id/selectStylesLayoutUpdatePost"
                                                            app:layout_constraintStart_toStartOf="parent"
                                                            app:layout_constraintEnd_toEndOf="parent"/>
 
-        <com.google.android.material.textview.MaterialTextView android:id="@+id/selectStylesLayout"
+
+        <com.google.android.material.textview.MaterialTextView android:id="@+id/selectStylesLayoutUpdatePost"
                                                                android:layout_height="40dp"
                                                                android:layout_width="match_parent"
                                                                android:background="@drawable/select_styles_background"
@@ -66,8 +67,8 @@
                                                                android:gravity="start"
                                                                android:hint="@string/select_styles"
                                                                android:textColor="@color/black"
-                                                               android:onClick="@{clickHandler::onSelectStylesButtonClick}"
-                                                               app:layout_constraintTop_toBottomOf="@id/uploadImageButton"
+                                                               android:onClick="@{clickHandler::onSelectStylesButtonClicked}"
+                                                               app:layout_constraintTop_toBottomOf="@id/inactiveUploadImageButton"
                                                                app:layout_constraintBottom_toTopOf="@id/rateLayout"
                                                                app:layout_constraintStart_toStartOf="parent">
         </com.google.android.material.textview.MaterialTextView>
@@ -83,7 +84,7 @@
                                                                app:boxCornerRadiusTopEnd="10dp"
                                                                style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox.Dense"
                                                                app:endIconMode="clear_text"
-                                                               app:layout_constraintTop_toBottomOf="@+id/selectStylesLayout"
+                                                               app:layout_constraintTop_toBottomOf="@+id/selectStylesLayoutUpdatePost"
                                                                app:layout_constraintBottom_toTopOf="@id/timeTakenLayout">
 
             <com.google.android.material.textfield.TextInputEditText android:id="@+id/rateEditView"
@@ -119,11 +120,39 @@
                                                            android:paddingRight="24dp"
                                                            android:textAlignment="center"
                                                            android:text="@string/submit"
+                                                           android:onClick="@{clickHandler::onSubmitButtonClicked}"
                                                            app:layout_constraintTop_toBottomOf="@+id/timeTakenLayout"
+                                                           app:layout_constraintBottom_toTopOf="@+id/deleteButton"
+                                                           app:layout_constraintStart_toStartOf="parent"
+                                                           app:layout_constraintEnd_toEndOf="parent"/>
+
+        <com.google.android.material.button.MaterialButton android:id="@+id/deleteButton"
+                                                           android:layout_width="wrap_content"
+                                                           android:layout_height="40dp"
+                                                           android:paddingLeft="24dp"
+                                                           android:paddingRight="24dp"
+                                                           android:backgroundTint="#F20A0A"
+                                                           android:textAlignment="center"
+                                                           android:text="@string/delete"
+                                                           android:onClick="@{clickHandler::onDeleteButtonClicked}"
+                                                           app:layout_constraintTop_toBottomOf="@+id/submitButton"
                                                            app:layout_constraintBottom_toTopOf="@+id/bottomNavBarView"
                                                            app:layout_constraintStart_toStartOf="parent"
                                                            app:layout_constraintEnd_toEndOf="parent"/>
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fabBack"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:padding="16dp"
+                android:layout_margin="20dp"
+                android:src="@drawable/fab_back"
+                android:onClick="@{clickHandler::onFabBackButtonClicked}"
+                android:contentDescription="@string/back_button"
+                app:layout_constraintBottom_toTopOf="@+id/bottomNavBarView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+        
         <com.google.android.material.bottomnavigation.BottomNavigationView android:id="@+id/bottomNavBarView"
                                                                            android:layout_width="match_parent"
                                                                            android:layout_height="wrap_content"
