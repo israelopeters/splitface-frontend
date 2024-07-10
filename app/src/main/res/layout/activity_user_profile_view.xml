@@ -4,12 +4,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
-        <variable
-            name="artist"
-            type="com.northcoders.tatooine.model.Artist" />
-    </data>
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/main"
         android:layout_width="match_parent"
@@ -35,7 +29,7 @@
             android:id="@+id/profilePicture"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:src="@drawable/profile"
+            android:src="@drawable/baseline_person_outline_24"
             app:layout_constraintTop_toBottomOf="@id/mainHeader"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="20dp"
@@ -50,10 +44,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
-            android:textSize="35sp"
+            android:textSize="20sp"
             android:textAllCaps="true"
             android:textStyle="bold"
-            android:text="@{artist.name}"
+            android:text="Artist name"
             app:layout_constraintStart_toEndOf="@id/profilePicture"
             app:layout_constraintTop_toTopOf="@id/profilePicture"
             app:layout_constraintEnd_toEndOf="parent"/>
@@ -65,12 +59,27 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
-            android:textSize="20sp"
+            android:layout_marginTop="5dp"
+            android:textSize="15sp"
             android:textStyle="bold"
-            android:text="@{artist.email}"
+            android:text="Artist work email"
             app:layout_constraintStart_toEndOf="@id/profilePicture"
-            app:layout_constraintTop_toTopOf="@id/locationButton"
-            app:layout_constraintEnd_toStartOf="@id/locationButton"/>
+            app:layout_constraintTop_toTopOf="@id/locationButton" />
+
+        <TextView
+            android:id="@+id/artistPreferredStyles"
+            android:textColor="@color/material_dynamic_primary20"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="10dp"
+            android:textSize="15sp"
+            android:textAllCaps="true"
+            android:text="Preferred artist styles"
+            app:layout_constraintStart_toStartOf="@id/profilePicture"
+            app:layout_constraintTop_toBottomOf="@id/locationButton"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
         <android.widget.Button
             android:id="@+id/locationButton"
@@ -86,36 +95,6 @@
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp" />
 
-        <android.widget.Button
-            android:id="@+id/deleteProfileButton"
-            android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:background="@drawable/button_shape"
-            android:text=" Delete Profile "
-            android:textColor="@color/white"
-            android:textSize="13sp"
-            app:layout_constraintTop_toBottomOf="@id/artistEmail"
-            app:layout_constraintStart_toStartOf="@id/profilePicture"
-            app:layout_constraintEnd_toStartOf="@id/editProfileButton"
-            android:layout_marginEnd="10dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="5dp" />
-
-        <android.widget.Button
-            android:id="@+id/editProfileButton"
-            android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:background="@drawable/button_shape"
-            android:text="Edit Profile"
-            android:textColor="@color/white"
-            android:textSize="13sp"
-            app:layout_constraintTop_toBottomOf="@id/artistEmail"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/deleteProfileButton"
-            android:layout_marginEnd="10dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="5dp" />
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewOfPosts"
             android:layout_width="match_parent"
@@ -124,7 +103,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/deleteProfileButton" />
+            app:layout_constraintTop_toBottomOf="@id/artistPreferredStyles" />
 
         <com.google.android.material.bottomnavigation.BottomNavigationView android:id="@+id/bottomNavBarView"
             android:layout_width="match_parent"
@@ -134,6 +113,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:menu="@menu/bottom_nav_menu">
+
 
 
         </com.google.android.material.bottomnavigation.BottomNavigationView>

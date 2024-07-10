@@ -8,13 +8,10 @@ import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.northcoders.tatooine.R;
 import com.northcoders.tatooine.databinding.ArtistProfileImagesLayoutBinding;
 import com.northcoders.tatooine.model.Tattoo;
 
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.List;
 
 public class TattooAdapter extends RecyclerView.Adapter<TattooAdapter.TattooViewHolder> {
@@ -38,15 +35,6 @@ public class TattooAdapter extends RecyclerView.Adapter<TattooAdapter.TattooView
     public void onBindViewHolder(@NonNull TattooViewHolder holder, int position) {
         Tattoo tattoo = tattoos.get(position);
         holder.bind(tattoo);
-        URL url = null;
-        try {
-            url = new URL(tattoos.get(position).getDesign());
-        } catch (MalformedURLException e) {
-            throw new RuntimeException(e);
-        }
-        Glide.with(context)
-                .load(url)
-                .into(holder.binding.artImage);
     }
 
     @Override

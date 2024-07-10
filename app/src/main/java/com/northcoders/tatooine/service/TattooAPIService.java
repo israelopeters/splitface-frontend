@@ -14,7 +14,6 @@ import retrofit2.http.Query;
 
 
 public interface TattooAPIService {
-
     @GET("/tattoo/tattoos") // add path
     Call<List<Tattoo>> getAllTattoos();
 
@@ -28,7 +27,7 @@ public interface TattooAPIService {
     Call<Tattoo> deletePost(@Path("id") long postId);
 
 
-    @GET("tattoo/tattoos/artist")
+    @GET("tattoos/artist")
     Call<List<Tattoo>> getAllTattoosFromArtist(
             @Query("id")Long id
     );
