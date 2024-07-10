@@ -44,11 +44,11 @@ public class SignUpActivity extends AppCompatActivity {
                 Artist artist = new Artist(name.getText().toString(), location.getText().toString(), email.getText().toString(), passcode.getText().toString());
 
                 viewModel.signUp(artist).observe(SignUpActivity.this, artistUpdated -> {
-                    if (artistUpdated != null) {
+//                    if (artistUpdated != null) {
                         Intent intent = new Intent(SignUpActivity.this, UserProfileViewActivity.class);
                         startActivity(intent);
                         finish();
-                    }
+//                    }
                 });
             }
         });

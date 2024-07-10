@@ -35,16 +35,17 @@ public class UpdateProfileActivity extends AppCompatActivity {
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Artist artist = new Artist(name.getText().toString(), location.getText().toString(), email.getText().toString(), passcode.getText().toString());
+//                Artist artist = new Artist(name.getText().toString(), location.getText().toString(), email.getText().toString(), passcode.getText().toString());
+                Artist artist = new Artist("Bob", "LS1 4EX", "bob@gmail.com", "100%DataPoint");
                 Long artistId = getIntent().getLongExtra("artistId", -1L);
 
                 viewModel.editArtistProfile(artistId, artist).observe(UpdateProfileActivity.this, artistUpdated -> {
-                    if (artistUpdated != null) {
+//                    if (artistUpdated != null) {
                         Intent intent = new Intent(UpdateProfileActivity.this, UserProfileViewActivity.class);
                         intent.putExtra("artist", artistUpdated.getId());
                         startActivity(intent);
                         finish();
-                    }
+//                    }
                 });
             }
         });
