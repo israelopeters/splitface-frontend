@@ -52,5 +52,5 @@ Here, the user can update their profile.<br/>
 
 ## Authors
 - Home activity, search functionality, add post activity, update post activity, bottom navigation bar, plus their functionality: Israel Peters (me) 
-- Profile activity, sign-up/sign-in activity, edit post activity, plus their functionalities: Jackson M.
+- Profile activity, sign-up/sign-in activity, edit post activity, plus their functionalities: Jackson MacDonald.
 
