@@ -14,7 +14,7 @@ Then, connect your Android device to your IDE ([Android Studio](https://develope
 When the app is up, you can interact with it. (If no data are showing on the home page upon starting the app, then it means the cloud instances of the API and database have been pulled down to eliminate the cost.)
 
 ## Layouts
-The app comprises different pages, which are listed below as different activities representing different functionalities.
+The app comprises different pages, which are listed below as different activities representing different functionalities. The ones with visuals are those I worked on.
 
 ### Home activity
 A RecyclerView of all posts in the app. Users can filter the posts by specific styles. A bottom navigation is present here and in most of the other pages, from which a user can navigate between the home page (landing activity), add post page, and profile page.<br/>
@@ -30,16 +30,12 @@ This page allows a signed-in user to update an existing post.<br/>
 
 ### Sign-up/Sign-in Activity
 The page for artists to create accounts or sign in to the app to access all functionalities. This page is accessible when a user clicks the Profile button on the bottom navigation bar.<br/>
-<img src="https://github.com/user-attachments/assets/79b1658a-11a0-4b79-b334-07b1d736e14c"  width="300" height="650"/> <br/>
 
 ### Profile activity
 This is the page that shows the details of a registered user, including their profile picture, name, work email, location, and a RecyclerView of their posts.<br/>
 
-<img src="https://github.com/user-attachments/assets/be4eb8d8-b8e5-4b06-aeb5-ae9f6d336c6b" width="300" height="650"/> <br/>
-
 ### Update Profile
 Here, the user can update their profile.<br/> 
-<img src="https://github.com/user-attachments/assets/5aa20c1e-0e95-4bbd-a931-b571895cdb64" width="300" height="650"/> <br/>
 
 
 ## Technologies and Approaches Used
